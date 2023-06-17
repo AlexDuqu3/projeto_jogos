@@ -9,7 +9,7 @@ using Unity.VisualScripting.Antlr3.Runtime;
 public class Tower : MonoBehaviour
 {
     private GameObject weapon;
-        private GameObject colliderObject;
+    private GameObject colliderObject;
     [Range(0f, 20f)]
     public float range;
     private float shootTimerMax;
@@ -25,7 +25,7 @@ public class Tower : MonoBehaviour
         weapon = transform.Find("weapon").gameObject;
         colliderObject = transform.Find("range").gameObject;
         range =0.5f;
-        shootTimerMax = 0.5f;
+        shootTimerMax = 1f;
     
 
     }

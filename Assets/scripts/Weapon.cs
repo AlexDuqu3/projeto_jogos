@@ -7,10 +7,14 @@ public class Weapon : MonoBehaviour
     private GameObject arrow;
     private Vector3 moveDir;
     public Animator animator;
+
+
     private void Awake()
     {
         arrow = transform.Find("arrow").gameObject;
+        animator = gameObject.GetComponent<Animator>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +33,7 @@ public class Weapon : MonoBehaviour
         float rotationSpeed = 50f;
 
         StartCoroutine(AimingCoroutine(targetRotation, rotationSpeed));
+
     }
 
     private IEnumerator ShootCoroutine(Vector3 targetPosition)
@@ -45,7 +50,9 @@ public class Weapon : MonoBehaviour
         // Tower has finished aiming, proceed with shooting
         GameObject arrowObject = Instantiate(arrow, transform.position, Quaternion.identity);
         ProjectileArrow arrowClass = arrowObject.AddComponent<ProjectileArrow>();
-       // animator.SetTrigger("Shoot");
+        // animator.SetTrigger("Shoot");
+        animator.SetTrigger("onShoot");
+        animator.speed = 2;
         arrowClass.Shoot(targetPosition);
     }
 
