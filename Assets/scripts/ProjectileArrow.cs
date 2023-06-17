@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class ProjectileArrow : MonoBehaviour
 {
-    private Vector3 targetPosition;
-    private void Setup(Vector3 targetPosition)
+    private Enemy enemy;
+    private void Setup(Enemy enemy)
     {
-        this.targetPosition= targetPosition;
+        this.enemy = enemy; 
     }
     // Start is called before the first frame update
     void Start()
@@ -20,7 +20,7 @@ public class ProjectileArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 moveDir= (targetPosition - transform.position).normalized;
+        Vector3 moveDir= (enemy.GetPosition() - transform.position).normalized;
         float moveSpeed = 10f;
         Renderer renderer = GetComponent<Renderer>();
         renderer.sortingOrder = 3;
@@ -28,16 +28,16 @@ public class ProjectileArrow : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, moveDir);
         transform.rotation = targetRotation;
         float destroySelfDistance = 1f;
-        if(Vector3.Distance(transform.position, targetPosition) < destroySelfDistance)
+        if(Vector3.Distance(transform.position, enemy.GetPosition()) < destroySelfDistance)
         {
-            //reached the target
+            enemy.dealDamage(25);
             Destroy(gameObject);
         }
     }
 
-    public void Shoot(Vector3 targetPosition)
+    public void Shoot(Enemy enemy)
     {
         transform.localScale = new Vector3(1f, 1f, 1f);
-        Setup(targetPosition);
+        Setup(enemy);
     }
 }

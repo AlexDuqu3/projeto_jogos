@@ -21,9 +21,9 @@ public class Weapon : MonoBehaviour
 
     }
 
-    public void Shoot(Vector3 targetPosition)
+    public void Shoot(Enemy enemy)
     {
-        StartCoroutine(ShootCoroutine(targetPosition));
+        StartCoroutine(ShootCoroutine(enemy));
     }
 
     public void Aiming(Vector3 targetPosition)
@@ -36,9 +36,9 @@ public class Weapon : MonoBehaviour
 
     }
 
-    private IEnumerator ShootCoroutine(Vector3 targetPosition)
+    private IEnumerator ShootCoroutine(Enemy enemy)
     {
-        Aiming(targetPosition);
+        Aiming(enemy.GetPosition());
 
         // Wait until the tower finishes aiming
         //yield return new WaitForSeconds(0.2f);
@@ -52,7 +52,7 @@ public class Weapon : MonoBehaviour
         ProjectileArrow arrowClass = arrowObject.AddComponent<ProjectileArrow>();
         // animator.SetTrigger("Shoot");
         animator.SetTrigger("onShoot");
-        arrowClass.Shoot(targetPosition);
+        arrowClass.Shoot(enemy);
     }
 
     private IEnumerator AimingCoroutine(Quaternion targetRotation, float rotationSpeed)

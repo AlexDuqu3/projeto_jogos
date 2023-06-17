@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4560297903270807905}
   - component: {fileID: 4103507640085428356}
   - component: {fileID: 6966976189953923035}
+  - component: {fileID: -4718917683293706677}
+  - component: {fileID: 2048946328279968698}
   m_Layer: 0
   m_Name: enemy_clampbeet
   m_TagString: Untagged
@@ -105,3 +107,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4718917683293706677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380036955330671484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c92173c9b192f64fbb67d3aa4f739fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &2048946328279968698
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380036955330671484}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.08284873}
+  serializedVersion: 2
+  m_Radius: 0.48133713

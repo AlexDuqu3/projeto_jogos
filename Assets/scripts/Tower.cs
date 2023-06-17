@@ -25,10 +25,8 @@ public class Tower : MonoBehaviour
     {
         weapon = transform.Find("weapon").gameObject;
         colliderObject = transform.Find("range").gameObject;
-        range =0.5f;
         shootTimerMax = 1f;
-    
-
+        //range = 10f
     }
     
     // Update is called once per frame
@@ -37,25 +35,30 @@ public class Tower : MonoBehaviour
         if (shootTimer <= 0f)
         {
             shootTimer = shootTimerMax;
-            Vector3 closestEnemyPosition = GetClosestEnemy();
+            /*Vector3 closestEnemyPosition = GetClosestEnemy();
             if (closestEnemyPosition != Vector3.zero)
             {
                 Shoot(closestEnemyPosition);
+            }*/
+            Enemy enemy = GetClosestEnemy();
+            if (enemy != null)
+            {
+                Shoot(enemy);
             }
         }
     }
     
-    private void Shoot(Vector3 targetPosition)
+    private void Shoot(Enemy enemy)
     {
         Weapon weaponClass = weapon.GetComponent<Weapon>();
         if (weaponClass == null)
         {
             weaponClass = weapon.AddComponent<Weapon>();
         }
-        weaponClass.Shoot(targetPosition);
+        weaponClass.Shoot(enemy);
     }
 
-    private Vector3 GetClosestEnemy()
+   /* private Vector3 GetClosestEnemy()
     {
         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
         UpgradeOverlay colliderClass = colliderObject.GetComponent<UpgradeOverlay>();
@@ -70,10 +73,16 @@ public class Tower : MonoBehaviour
         }
 
         return Vector3.zero;
-    }
+    }*/
   
     public float GetRange()
     {
         return range;
+    }
+
+    private Enemy GetClosestEnemy()
+    {
+        Enemy enemy = Enemy.GetClosestEnemy(transform.position, GetRange());
+        return enemy;
     }
 }
