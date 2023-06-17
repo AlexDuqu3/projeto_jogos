@@ -12,6 +12,7 @@ public class Tower : MonoBehaviour
     private GameObject colliderObject;
     [Range(0f, 20f)]
     public float range;
+    [SerializeField]
     private float shootTimerMax;
     private float shootTimer;
     // Start is called before the first frame update

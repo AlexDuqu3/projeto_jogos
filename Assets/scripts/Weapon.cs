@@ -52,7 +52,6 @@ public class Weapon : MonoBehaviour
         ProjectileArrow arrowClass = arrowObject.AddComponent<ProjectileArrow>();
         // animator.SetTrigger("Shoot");
         animator.SetTrigger("onShoot");
-        animator.speed = 2;
         arrowClass.Shoot(targetPosition);
     }
 
