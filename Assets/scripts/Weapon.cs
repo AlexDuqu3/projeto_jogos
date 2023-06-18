@@ -38,6 +38,7 @@ public class Weapon : MonoBehaviour
 
     private IEnumerator ShootCoroutine(Enemy enemy)
     {
+        
         Aiming(enemy.GetPosition());
 
         // Wait until the tower finishes aiming

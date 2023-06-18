@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AdaptivePerformance.Provider;
 
@@ -9,6 +10,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public static List<Enemy> enemyList = new List<Enemy>();
     private HealthSystem healthSystem;
+
+    private HealthBar healthBar;
+    private Transform pfHealthBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,8 +28,10 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         enemyList.Add(this);
-        this.healthSystem = new HealthSystem(100);
-        int a = 1;
+        this.healthSystem = new HealthSystem(110);
+        GameObject HealthBarGO = transform.Find("HealthBarGO").gameObject;
+        this.healthBar = HealthBarGO.GetComponent<HealthBar>();
+        this.healthBar.Setup(this.healthSystem);
     }
 
     public void dealDamage(int dmg)
@@ -37,6 +43,7 @@ public class Enemy : MonoBehaviour
             {
                 //
                 Enemy.enemyList.Remove(this);
+                this.healthBar.destroyThis();
                 Destroy(gameObject);
                 Destroy(this);
             }

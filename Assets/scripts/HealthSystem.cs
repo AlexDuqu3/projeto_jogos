@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class HealthSystem
 {
-    // Start is called before the first frame update
+
+    public event EventHandler onHealthChanged;
+
     private int healthMax;
     private int health;
 
@@ -32,7 +34,7 @@ public class HealthSystem
         {
             health = 0;
         }
-        //OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        this.onHealthChanged?.Invoke(this, EventArgs.Empty);
         //OnDamaged?.Invoke(this, EventArgs.Empty);
 
         if (health <= 0)
@@ -50,5 +52,10 @@ public class HealthSystem
     public bool IsDead()
     {
         return health <= 0;
+    }
+
+    public float GetHealthPercent()
+    {
+        return (float)health / healthMax;
     }
 }

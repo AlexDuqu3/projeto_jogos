@@ -20,19 +20,26 @@ public class ProjectileArrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 moveDir= (enemy.GetPosition() - transform.position).normalized;
-        float moveSpeed = 10f;
-        Renderer renderer = GetComponent<Renderer>();
-        renderer.sortingOrder = 3;
-        transform.position += moveDir * moveSpeed * Time.deltaTime;
-        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, moveDir);
-        transform.rotation = targetRotation;
-        float destroySelfDistance = 1f;
-        if(Vector3.Distance(transform.position, enemy.GetPosition()) < destroySelfDistance)
+        if (enemy != null)
         {
-            enemy.dealDamage(25);
-            Destroy(gameObject);
+            Vector3 moveDir = (enemy.GetPosition() - transform.position).normalized;
+            float moveSpeed = 10f;
+            Renderer renderer = GetComponent<Renderer>();
+            renderer.sortingOrder = 3;
+            transform.position += moveDir * moveSpeed * Time.deltaTime;
+            Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, moveDir);
+            transform.rotation = targetRotation;
+            float destroySelfDistance = 1f;
+            if (Vector3.Distance(transform.position, enemy.GetPosition()) < destroySelfDistance)
+            {
+                enemy.dealDamage(25);
+                Destroy(gameObject);
+            }
         }
+        else
+        {
+            Destroy(gameObject);
+        }   
     }
 
     public void Shoot(Enemy enemy)
