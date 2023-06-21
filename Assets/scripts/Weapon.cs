@@ -7,12 +7,16 @@ public class Weapon : MonoBehaviour
     private GameObject arrow;
     private Vector3 moveDir;
     public Animator animator;
+    private bool isAnimtower1;
+    private bool isAnimtower2;
 
 
     private void Awake()
     {
         arrow = transform.Find("arrow").gameObject;
         animator = gameObject.GetComponent<Animator>();
+        isAnimtower1 = ContainsParam(animator, "onShoot");
+        isAnimtower2 = ContainsParam(animator, "isShooting");
     }
 
     // Update is called once per frame
@@ -52,7 +56,10 @@ public class Weapon : MonoBehaviour
         GameObject arrowObject = Instantiate(arrow, transform.position, Quaternion.identity);
         ProjectileArrow arrowClass = arrowObject.AddComponent<ProjectileArrow>();
         // animator.SetTrigger("Shoot");
-        animator.SetTrigger("onShoot");
+        if (isAnimtower1)
+            animator.SetTrigger("onShoot");
+        if (isAnimtower2)
+            animator.SetBool("isShooting", true);
         arrowClass.Shoot(enemy);
     }
 
@@ -75,5 +82,20 @@ public class Weapon : MonoBehaviour
 
         // If the angle difference is greater than the threshold, the tower is still aiming
         return angleDifference > angleThreshold;
+    }
+
+    public static bool ContainsParam(Animator _Anim, string _ParamName)
+    {
+        foreach (AnimatorControllerParameter param in _Anim.parameters)
+        {
+            if (param.name == _ParamName) return true;
+        }
+        return false;
+    }
+
+    public void setAnim()
+    {
+        if (isAnimtower2)
+            animator.SetBool("isShooting", false);
     }
 }
