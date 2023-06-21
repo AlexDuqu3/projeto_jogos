@@ -6,8 +6,10 @@ using UnityEngine;
 public class GameManage : Singleton<GameManage>
 {
     public Tower selectedTower { get; set; }
+    public int Currency { get => currency; set => currency = value; }
+
     public int Lives;
-    public int Currency;
+    private int currency;
 
     private void Start()
     {
@@ -42,5 +44,17 @@ public class GameManage : Singleton<GameManage>
             }
         }
     }
+
+    public void SellTower()
+    {
+        if (selectedTower != null)
+        {
+            Currency += selectedTower.price / 2;
+            selectedTower.Sell();
+            DeselectTower();
+        }
+    }
+
+
 
 }

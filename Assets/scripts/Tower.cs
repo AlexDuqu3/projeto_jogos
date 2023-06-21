@@ -11,11 +11,11 @@ public class Tower : MonoBehaviour
 {
     private GameObject weapon;
     private GameObject colliderObject;
-    private int damage;
+    protected int damage;
     [Range(0f, 20f)]
     public float range;
     [SerializeField]
-    private float shootTimerMax;
+    protected float shootTimerMax;
     private float shootTimer;
     public TowerUpgrade[] towerUpgrades { get; protected set; }
     private GameObject upgradePanel;
@@ -35,30 +35,15 @@ public class Tower : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-  
-        towerUpgrades = new TowerUpgrade[]
-        {
-            new TowerUpgrade(2,2,2,Resources.Load<GameObject>("prefabs/tower_lvl2")),
-            new TowerUpgrade(3,3,3,Resources.Load<GameObject>("prefabs/tower_lvl3")),
-        };
     }
 
-    private void Awake()
+    public virtual void Awake()
     {
-        GameObject upgradeButton = transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
-        Button upgradeButtonComponent = upgradeButton.GetComponent<Button>();
-        if (!(upgradeButtonComponent.onClick.GetPersistentEventCount() > 0))
-        {
-            upgradeButtonComponent.onClick.AddListener(() => GameManage.Instance.UpgradeTower());
-        }
+        level= 1;
+        BindingUpgradePanelButtons();
         weapon = transform.Find("weapon").gameObject;
         colliderObject = transform.Find("range").gameObject;
         upgradePanel = transform.Find("upgradePanel").gameObject;
-        range =0.5f;
-        shootTimerMax = 0.5f;
-        level= 1;
-        damage = 1;
-        price = 1;
 
     }
     
@@ -156,11 +141,31 @@ public class Tower : MonoBehaviour
         GameManage.Instance.SelectTower(newTowerClass);
         Destroy(gameObject);
         GameObject upgradeButton=newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+        GameObject sellButton= newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("sell").gameObject;
+        sellButton.GetComponent<Button>().onClick.AddListener(() => GameManage.Instance.SellTower());
         upgradeButton.GetComponent<Button>().onClick.AddListener(() => GameManage.Instance.UpgradeTower());
     }
 
+    public void Sell()
+    {
+        Destroy(gameObject);
+    }
 
-
+    protected void BindingUpgradePanelButtons()
+    {
+        GameObject upgradeButton = transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+        GameObject sellButton = transform.Find("upgradePanel").gameObject.transform.Find("sell").gameObject;
+        Button sellButtonComponent = sellButton.GetComponent<Button>();
+        if (!(sellButtonComponent.onClick.GetPersistentEventCount() > 0))
+        {
+            sellButtonComponent.onClick.AddListener(() => GameManage.Instance.SellTower());
+        }
+        Button upgradeButtonComponent = upgradeButton.GetComponent<Button>();
+        if (!(upgradeButtonComponent.onClick.GetPersistentEventCount() > 0))
+        {
+            upgradeButtonComponent.onClick.AddListener(() => GameManage.Instance.UpgradeTower());
+        }
+    }
     private Enemy GetClosestEnemy()
     {
         Enemy enemy = Enemy.GetClosestEnemy(transform.position, GetRange());
