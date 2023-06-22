@@ -64,6 +64,14 @@ public class Tower : MonoBehaviour
             {
                 Shoot(enemy);
             }
+            else
+            {
+                Weapon weaponClass = weapon.GetComponent<Weapon>();
+                if (weaponClass != null)
+                {
+                    weaponClass.setAnim();
+                }
+            }
         }
     }
     
