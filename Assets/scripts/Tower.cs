@@ -21,7 +21,15 @@ public class Tower : MonoBehaviour
     public TowerUpgrade[] towerUpgrades { get; protected set; }
     private GameObject upgradePanel;
     public int level;
-    public int price;
+    private int price;
+    public int Price
+    {
+        get
+        {
+            return price;
+        }
+        set { price = value; }
+    }
     public TowerUpgrade NextUpgrade
     {
         get
@@ -137,7 +145,7 @@ public class Tower : MonoBehaviour
     public virtual void Upgrade()
     {
         GameManage.Instance.Currency -= NextUpgrade.Price;
-        price += NextUpgrade.Price;
+        Price += NextUpgrade.Price;
         this.damage += NextUpgrade.Damage;
         this.range += NextUpgrade.Range;
         GameObject newTowerObject=Instantiate(NextUpgrade.towerVisual, transform.position, transform.rotation, transform.parent);
@@ -145,7 +153,7 @@ public class Tower : MonoBehaviour
         Tower newTowerClass= newTowerObject.GetComponent<Tower>();
         newTowerClass.damage = damage;
         newTowerClass.range = range;
-        newTowerClass.price = price;
+        newTowerClass.Price = Price;
         newTowerClass.level = level;
         newTowerClass.towerUpgrades = towerUpgrades;
         newTowerClass.GetComponent<Tower>().damage = damage;

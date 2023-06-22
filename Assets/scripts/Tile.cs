@@ -81,7 +81,7 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseOver()
     {
-        if (!EventSystem.current.IsPointerOverGameObject())
+        if (!EventSystem.current.IsPointerOverGameObject() && GameManage.Instance.TowerPlacementBtn!=null)
         {
             if(IsDisable)
             {
@@ -89,7 +89,8 @@ public class Tile : MonoBehaviour
             }
             else
             {
-            ColorTile(isEmpty ? emptyColor : fullColor);
+                ColorTile(isEmpty ? emptyColor : fullColor);
+                ColorAdjacentTiles(isEmpty ? emptyColor : fullColor);
             }
             if (Input.GetMouseButtonDown(1) && IsEmpty && !IsDisable)
             {
@@ -101,15 +102,18 @@ public class Tile : MonoBehaviour
     private void OnMouseExit()
     {
         ColorTile(Color.white);
+        ColorAdjacentTiles(Color.white);
     }
     
 
     private void PlaceTower()
     {
-        GameObject tower=Instantiate(GameManage.Instance.TowerPrefab,WorldPosition, Quaternion.identity);
+        GameObject tower=Instantiate(GameManage.Instance.TowerPlacementBtn.TowerPrefab, WorldPosition, Quaternion.identity);
        // tower.AddComponent<Tower>();
         tower.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
         tower.transform.SetParent(transform);
+        Hover.Instance.Deactivate();
+        GameManage.Instance.BuyTower();
         IsEmpty = false;
         NumberOftowers++;
         MarkAdjacentPointsDurty();
@@ -119,6 +123,20 @@ public class Tile : MonoBehaviour
     private void ColorTile(Color newColor)
     {
         spriteRenderer.color = newColor;
+    }
+
+    private void ColorAdjacentTiles(Color newColor)
+    {
+        Point[] adjacentPoints = GetAdjacentPoints();
+        foreach (Point adjacentPoint in adjacentPoints)
+        {
+            // Verificar se o tile adjacente existe no dicionário
+            if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
+            {
+                Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];  
+                adjacentTile.ColorTile(newColor);
+            }
+        }
     }
 
     private Point[] GetAdjacentPoints()

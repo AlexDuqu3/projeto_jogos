@@ -19,7 +19,7 @@ public class LightningTower : Tower
         range = 0.5f;
         shootTimerMax = 0.5f;
         damage = 1;
-        price = 2;
+        Price = 2;
         base.Awake();
 
     }

@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManage : Singleton<GameManage>
 {
     private GameObject towerPrefab;
+    public TowerPlacement TowerPlacementBtn { get; private set; }
     public Tower selectedTower { get; set; }
-    public int Currency { get => currency; set => currency = value; }
+    private Text currencyText;
+    private int currency;
+
     public GameObject TowerPrefab
     {
         get
@@ -15,13 +19,23 @@ public class GameManage : Singleton<GameManage>
             return towerPrefab;
         }
     }
-    private void Awake()
+
+    public int Currency
     {
-        towerPrefab = Resources.Load<GameObject>("prefabs/tower_lvl1");
+        get { return currency; }
+        set
+        {
+            currency = value;
+            currencyText.text = value.ToString() + "<color=lime>$</color>";
+        }
     }
 
+    private void Awake()
+    {
+        currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
+        towerPrefab = Resources.Load<GameObject>("prefabs/tower_lvl1");
+    }
     public int Lives;
-    private int currency;
 
     private void Start()
     {
@@ -66,7 +80,7 @@ public class GameManage : Singleton<GameManage>
     {
         if (selectedTower != null)
         {
-            Currency += selectedTower.price / 2;
+            Currency += selectedTower.Price / 2;
             Tile selectedTile = selectedTower.GetComponentInParent<Tile>();
             selectedTile.IsEmpty = true;
             selectedTile.NumberOftowers--;
@@ -78,9 +92,9 @@ public class GameManage : Singleton<GameManage>
 
     private void HandleEscape()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(selectedTower != null)
+            if (selectedTower != null)
             {
                 DeselectTower();
             }
@@ -88,8 +102,18 @@ public class GameManage : Singleton<GameManage>
             {
                 Application.Quit();
             }
-        }   
+        }
     }
 
+    public void PickTower(TowerPlacement towerPlacement)
+    {
+        TowerPlacementBtn = towerPlacement;
+        Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
+    }
+
+    public void BuyTower()
+    {
+        TowerPlacementBtn = null;
+    }
 
 }
