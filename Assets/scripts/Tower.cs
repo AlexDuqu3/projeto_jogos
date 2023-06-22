@@ -161,10 +161,13 @@ public class Tower : MonoBehaviour
         newTowerClass.GetComponent<SpriteRenderer>().sortingOrder=gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         GameManage.Instance.SelectTower(newTowerClass);
         Destroy(gameObject);
-        GameObject upgradeButton=newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+        if (newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("upgrade") != null)
+        {
+            GameObject upgradeButton = newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+            upgradeButton.GetComponent<Button>().onClick.AddListener(() => GameManage.Instance.UpgradeTower());
+        }
         GameObject sellButton= newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("sell").gameObject;
         sellButton.GetComponent<Button>().onClick.AddListener(() => GameManage.Instance.SellTower());
-        upgradeButton.GetComponent<Button>().onClick.AddListener(() => GameManage.Instance.UpgradeTower());
     }
 
     public void Sell()
@@ -174,18 +177,23 @@ public class Tower : MonoBehaviour
 
     protected void BindingUpgradePanelButtons()
     {
-        GameObject upgradeButton = transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+        if(transform.Find("upgradePanel").gameObject.transform.Find("upgrade") != null)
+        {
+            GameObject upgradeButton = transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+            Button upgradeButtonComponent = upgradeButton.GetComponent<Button>();
+            if (!(upgradeButtonComponent.onClick.GetPersistentEventCount() > 0))
+            {
+                upgradeButtonComponent.onClick.AddListener(() => GameManage.Instance.UpgradeTower());
+            }
+        }
+        
         GameObject sellButton = transform.Find("upgradePanel").gameObject.transform.Find("sell").gameObject;
         Button sellButtonComponent = sellButton.GetComponent<Button>();
         if (!(sellButtonComponent.onClick.GetPersistentEventCount() > 0))
         {
             sellButtonComponent.onClick.AddListener(() => GameManage.Instance.SellTower());
         }
-        Button upgradeButtonComponent = upgradeButton.GetComponent<Button>();
-        if (!(upgradeButtonComponent.onClick.GetPersistentEventCount() > 0))
-        {
-            upgradeButtonComponent.onClick.AddListener(() => GameManage.Instance.UpgradeTower());
-        }
+        
     }
     private Enemy GetClosestEnemy()
     {
