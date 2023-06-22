@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 480142228819451431}
   - component: {fileID: 480142228819451430}
   - component: {fileID: 480142228819451425}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 480142228846150602}
   - component: {fileID: 480142228846150601}
   - component: {fileID: 480142228846150600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tower2_lvl2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 480142229697921152}
   - component: {fileID: 480142229697921155}
   - component: {fileID: 480142229697921154}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 480142229878783001}
   - component: {fileID: 480142229878783000}
   - component: {fileID: 480142229878783003}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: upgradePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 480142229881478456}
   - component: {fileID: 480142229881478459}
   - component: {fileID: 480142229881478458}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   - component: {fileID: 480142229921800034}
   - component: {fileID: 480142229921800045}
   - component: {fileID: 480142229921800044}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -717,7 +717,7 @@ GameObject:
   - component: {fileID: 480142230181696409}
   - component: {fileID: 480142230181696408}
   - component: {fileID: 480142230181696411}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

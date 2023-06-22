@@ -14,6 +14,7 @@ public class UpgradeOverlay : MonoBehaviour
         tower = transform.parent.gameObject;
         transform.position= tower.transform.position;
         transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+        gameObject.SetActive(false);
     }
   
     public bool IsColliding()

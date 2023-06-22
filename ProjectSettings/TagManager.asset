@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Map
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Tower
+  - Enemy
+  - UiCustom
+  - Minimap
   - 
   - 
   - 

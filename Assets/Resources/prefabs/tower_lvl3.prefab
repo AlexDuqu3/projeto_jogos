@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2569701583631546138}
   - component: {fileID: 2569701583631546139}
   - component: {fileID: 2569701583631546136}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2569701583631546137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0.1963013, z: 0}
+  m_LocalPosition: {x: 0.001, y: 0.1963013, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 49bbea4ece328b64aae5c7fe11e6ed7b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2569701584372943748}
   - component: {fileID: 2569701584372943749}
   - component: {fileID: 2569701584372943746}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 2569701584525252475}
   - component: {fileID: 2569701584525252476}
   - component: {fileID: 8117360152171284738}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: tower_lvl3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1623251419, guid: 907371c5ac9d204458968c2b24da82d3, type: 3}
+  m_Sprite: {fileID: -1658258516, guid: 907371c5ac9d204458968c2b24da82d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -319,8 +319,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 3.6573243, z: 0.2}
-  m_Center: {x: 0, y: -0.17133778, z: 0}
+  m_Size: {x: 2, y: 3.6256971, z: 0.2}
+  m_Center: {x: 0, y: 0.81390095, z: 0}
 --- !u!114 &8117360152171284738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 2569701584764828556}
   - component: {fileID: 2569701584764828557}
   - component: {fileID: 2569701584764828554}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2569701584764828555}
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
-  m_LocalPosition: {x: 0.01, y: 0.71, z: 0}
+  m_LocalPosition: {x: 0.01, y: 1.659, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -409,9 +409,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -1869315837
+  m_SortingLayer: 1
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1684927807, guid: c1b6e63c14bd3f943bf8e1ad430a1304, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 6078874184738242720}
   - component: {fileID: 6725535278640966366}
   - component: {fileID: 6977629899062153558}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: upgradePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +482,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0, y: 2.22}
+  m_AnchoredPosition: {x: -0.055, y: 3.169}
   m_SizeDelta: {x: 1.9762, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6211192928239067295
@@ -503,8 +503,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1869315837
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6078874184738242720
 MonoBehaviour:
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 1178405342284189607}
   - component: {fileID: 6987591081220756555}
   - component: {fileID: 4831267302614535026}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -703,7 +703,7 @@ GameObject:
   - component: {fileID: 2148066552048305124}
   - component: {fileID: 4741755779013716780}
   - component: {fileID: 8490552134696029843}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,6 +6,7 @@ using CodeMonkey.Utils;
 using System;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Tower : MonoBehaviour
 {
@@ -100,14 +101,17 @@ public class Tower : MonoBehaviour
 
     public void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            if (GameManage.Instance.selectedTower != null)
+            if (Input.GetMouseButtonDown(0))
             {
-                GameManage.Instance.DeselectTower();
-                return;
+                if (GameManage.Instance.selectedTower != null)
+                {
+                    GameManage.Instance.DeselectTower();
+                    return;
+                }
+                GameManage.Instance.SelectTower(this);
             }
-            GameManage.Instance.SelectTower(this);
         }
     }
 
@@ -138,6 +142,7 @@ public class Tower : MonoBehaviour
         newTowerClass.towerUpgrades = towerUpgrades;
         newTowerClass.GetComponent<Tower>().damage = damage;
         newTowerClass.GetComponent<Tower>().range = range;
+        newTowerClass.GetComponent<SpriteRenderer>().sortingOrder=gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         GameManage.Instance.SelectTower(newTowerClass);
         Destroy(gameObject);
         GameObject upgradeButton=newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
