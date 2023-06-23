@@ -133,7 +133,7 @@ public class Tile : MonoBehaviour
         MarkAdjacentPointsDurty(GetAdjacentPoints(GameManage.Instance.TowersAdjacentRadius));
         ColorTile(Color.white);
     }
-    public void PlaceNexus(GameObject nexusPrefab)
+    public Vector2 PlaceNexus(GameObject nexusPrefab)
     {
         GameObject nexus = Instantiate(nexusPrefab, WorldPosition, Quaternion.identity);
         nexus.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
@@ -151,8 +151,8 @@ public class Tile : MonoBehaviour
                 }
                 
             }
-        }   
-      
+        }
+        return WorldPosition;
 
     }
 

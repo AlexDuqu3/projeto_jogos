@@ -46,4 +46,9 @@ public class CameraMoviment : MonoBehaviour
         yMin = maxTile.y - wp.y;
 
     }
+
+    public void setCamaraPosition(Vector3 position)
+    {
+        transform.position = position;
+    }
 }

@@ -2,6 +2,7 @@ using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
@@ -46,9 +47,11 @@ public class LevelManager : Singleton<LevelManager>
              PlaceTile(newTiles[x].ToString(), x, y, worldStartPosition);
             }
         }
-        SpawnNexus();
+        Vector2 worldPositionNexus = SpawnNexus();
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;
         cameraMoviment.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
+
+        cameraMoviment.setCamaraPosition(new Vector3(worldPositionNexus.x, worldPositionNexus.y, -10));
     }
 
     private void PlaceTile(string tileType, int x, int y, Vector3 worldStartPosition)
@@ -66,7 +69,7 @@ public class LevelManager : Singleton<LevelManager>
         return dataString.Split('-');
     }
 
-    private void SpawnNexus()
+    private Vector2 SpawnNexus()
     {
         int mapX = (int)MapPosition.x;
         int mapY = (int)MapPosition.y;
@@ -83,7 +86,9 @@ public class LevelManager : Singleton<LevelManager>
         int nexusPosY = UnityEngine.Random.Range(minNexusPosY, maxNexusPosY + 1);
         nexusPoint= new Point(nexusPosX, nexusPosY);
         Tile tile = Tiles[nexusPoint];
-        tile.PlaceNexus(nexusPrefab);
+        Vector2 worldPositionNexus = tile.PlaceNexus(nexusPrefab);
+        return worldPositionNexus;
+
     }
 
     public Tile GetTileAtWorldPosition()
