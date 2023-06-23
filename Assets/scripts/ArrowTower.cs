@@ -20,7 +20,6 @@ public class ArrowTower : Tower
         range = 0.5f;
         shootTimerMax = 0.5f;
         damage = 1;
-        Price = 2;
         base.Awake();
     }
 

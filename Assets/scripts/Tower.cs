@@ -93,23 +93,27 @@ public class Tower : MonoBehaviour
         weaponClass.Shoot(enemy);
     }
 
-   /* private Vector3 GetClosestEnemy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
-        UpgradeOverlay colliderClass = colliderObject.GetComponent<UpgradeOverlay>();
-        if (colliderClass == null)
-        {
-            colliderClass = colliderObject.AddComponent<UpgradeOverlay>();
-        }
-        if (colliderClass.IsColliding())
-        {
-            // Mouse position is within the circular range
-            return mousePosition;
-        }
+        Debug.Log("Collision");
+    }
+    /* private Vector3 GetClosestEnemy()
+     {
+         Vector3 mousePosition = UtilsClass.GetMouseWorldPosition();
+         UpgradeOverlay colliderClass = colliderObject.GetComponent<UpgradeOverlay>();
+         if (colliderClass == null)
+         {
+             colliderClass = colliderObject.AddComponent<UpgradeOverlay>();
+         }
+         if (colliderClass.IsColliding())
+         {
+             // Mouse position is within the circular range
+             return mousePosition;
+         }
 
-        return Vector3.zero;
-    }*/
-  
+         return Vector3.zero;
+     }*/
+
     public float GetRange()
     {
         return range;

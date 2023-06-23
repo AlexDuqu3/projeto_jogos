@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -6,20 +6,24 @@ using UnityEngine.UI;
 
 public class GameManage : Singleton<GameManage>
 {
-    private GameObject towerPrefab;
     public TowerPlacement TowerPlacementBtn { get; private set; }
     public Tower selectedTower { get; set; }
     private Text currencyText;
-    private int currency;
-
-    public GameObject TowerPrefab
+    private Text healthText;
+    private bool gameOver = false;
+    private int towersAdjacentRadius;
+    public int TowersAdjacentRadius
     {
         get
         {
-            return towerPrefab;
+            return towersAdjacentRadius;
+        }
+        set
+        {
+            towersAdjacentRadius = value;
         }
     }
-
+    private int currency;
     public int Currency
     {
         get { return currency; }
@@ -29,18 +33,34 @@ public class GameManage : Singleton<GameManage>
             currencyText.text = value.ToString() + "<color=lime>$</color>";
         }
     }
+    private int health;
+    public int Health
+    {
+        get => health; set
+        {
+            health = value;
+            if(health <= 0)
+            {
+                health = 0;
+                GameOver();
+            }
+            healthText.text = health.ToString() + "<color=red>♥</color>";
+            
+        }
+    }
 
     private void Awake()
     {
         currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
-        towerPrefab = Resources.Load<GameObject>("prefabs/tower_lvl1");
+        healthText = GameObject.Find("HealthText").GetComponent<Text>();
     }
-    public int Lives;
+
 
     private void Start()
     {
-        Lives = 10;
+        Health = 10;
         Currency = 50;
+        TowersAdjacentRadius = 2; //3x3
     }
 
     private void Update()
@@ -82,9 +102,9 @@ public class GameManage : Singleton<GameManage>
         {
             Currency += selectedTower.Price / 2;
             Tile selectedTile = selectedTower.GetComponentInParent<Tile>();
-            selectedTile.IsEmpty = true;
-            selectedTile.NumberOftowers--;
-            selectedTile.MarkAdjacentPointsPristine();
+            selectedTile.IsEmpty = true; // clear the tile
+            selectedTile.NumberOftowers--; // decrement the number of towers "using" the tile (adjacentS)
+            selectedTile.MarkAdjacentPointsPristine(selectedTile.GetAdjacentPoints(GameManage.Instance.TowersAdjacentRadius));//3x3
             selectedTower.Sell();
             DeselectTower();
         }
@@ -107,13 +127,29 @@ public class GameManage : Singleton<GameManage>
 
     public void PickTower(TowerPlacement towerPlacement)
     {
-        TowerPlacementBtn = towerPlacement;
-        Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
+        if (Currency >= towerPlacement.Price)
+        {
+            TowerPlacementBtn = towerPlacement;
+            Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
+        }
+
     }
 
     public void BuyTower()
     {
-        TowerPlacementBtn = null;
+        if (Currency >= TowerPlacementBtn.Price)
+        {
+            Currency -= TowerPlacementBtn.Price;
+            TowerPlacementBtn = null;
+        }
+    }
+
+    public void GameOver()
+    {
+        if (!gameOver)
+        {
+            gameOver = true;
+        }
     }
 
 }

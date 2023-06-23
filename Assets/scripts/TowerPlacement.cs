@@ -7,6 +7,7 @@ public class TowerPlacement : MonoBehaviour
 {
     [SerializeField]
     private GameObject towerPrefab;
+    [SerializeField]
     private int price;
     private Text priceText;
     public GameObject TowerPrefab
@@ -16,10 +17,12 @@ public class TowerPlacement : MonoBehaviour
             return towerPrefab;
         }
     }
+
+    public int Price { get => price; }
+
     private void Awake()
     {
         priceText = transform.Find("Price").GetComponent<Text>();
-        price = towerPrefab.GetComponent<Tower>().Price;
         
     }
     // Start is called before the first frame update

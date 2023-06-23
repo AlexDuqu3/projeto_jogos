@@ -23,6 +23,12 @@ public class Hover : Singleton<Hover>
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+            //get the tile that the mouse is on 
+            Tile tile = LevelManager.Instance.GetTileAtWorldPosition();
+            if(tile != null)
+            {
+                spriteRenderer.sortingOrder =tile.GridPosition.Y;
+            }
         }
     }
     public void Activate(Sprite sprite)

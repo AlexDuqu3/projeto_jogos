@@ -362,6 +362,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -369,12 +381,12 @@ TextureImporter:
       name: TX Props Chest
       rect:
         serializedVersion: 2
-        x: 96
-        y: 451
+        x: 95
+        y: 452
         width: 32
         height: 31
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -412,7 +424,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 448
+        y: 449
         width: 32
         height: 46
       alignment: 7
@@ -516,8 +528,8 @@ TextureImporter:
       name: TX Props Rune Pillar X3
       rect:
         serializedVersion: 2
-        x: 227
-        y: 355
+        x: 226
+        y: 354
         width: 26
         height: 66
       alignment: 7
@@ -1126,11 +1138,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 353
-        y: 171
+        y: 172
         width: 94
         height: 72
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1411,9 +1423,9 @@ TextureImporter:
       TX Props Stone Bench E: 21300100
       TX Props Rune Pillar Broken Glow: 21300064
       TX Props Road Sign E: 21300086
+      TX Props Wooden Gate: 21300158
       TX Props Rune Pillar X2 Glow: 21300044
       TX Props Altar Rune 2: 21300146
-      TX Props Wooden Gate: 21300158
       TX Props Cube: 21300036
       TX Props Stone Coffin V: 21300076
       TX Props Gravestone B: 21300070
