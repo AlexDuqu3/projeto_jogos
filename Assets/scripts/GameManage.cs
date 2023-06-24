@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -63,7 +64,7 @@ public class GameManage : Singleton<GameManage>
     }
     private void Awake()
     {
-       // waveText= GameObject.Find("Stats/WaveStats").GetComponent<Text>();
+        // waveText= GameObject.Find("Stats/WaveStats").GetComponent<Text>();
         currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
         Pool = GetComponent<ObjectPool>();
@@ -191,25 +192,35 @@ public class GameManage : Singleton<GameManage>
         //        break;
         //}   
         //Pool.GetObject(type).GetComponent<Enemy>();
-        Vector2 spawnPoint = LevelManager.Instance.GetRandomPointOutsideMap(10);
-        bool foundValidSpawnPoint = false;
 
-        while (!foundValidSpawnPoint)
+        Vector2[] position = LevelManager.Instance.RandomPointsGenerator.GenerateRandomPoints(4000);
+        int outerDistance = 10; // Distance from inner square to outer square
+        int innerDistance = 5; // Distance from inner square edge to inner square content
+
+        //Vector2 randomPoint = LevelManager.Instance.GetRandomPointInOuterSquareButNotInInnerSquare(outerDistance, innerDistance);
+        //Instantiate(EnemySpawner, randomPoint, Quaternion.identity);
+        foreach (Vector2 point in position)
         {
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint, 1f);
-
-            if (colliders.Length == 0)
-            {
-                // No colliders found, it's a valid spawn point
-                foundValidSpawnPoint = true;
-                Instantiate(EnemySpawner, spawnPoint, Quaternion.identity);
-            }
-            else
-            {
-                // There are colliders, try finding another point
-                spawnPoint = LevelManager.Instance.GetRandomPointOutsideMap(10);
-            }
+            Instantiate(EnemySpawner, point, Quaternion.identity);
         }
+        //bool foundValidSpawnPoint = false;
+
+        //while (!foundValidSpawnPoint)
+        //{
+        //    Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint, 1f);
+
+        //    if (colliders.Length == 0)
+        //    {
+        //        // No colliders found, it's a valid spawn point
+        //        foundValidSpawnPoint = true;
+        //        Instantiate(EnemySpawner, spawnPoint, Quaternion.identity);
+        //    }
+        //    else
+        //    {
+        //        // There are colliders, try finding another point
+        //        spawnPoint = LevelManager.Instance.GetRandomPointOutsideMap(10);
+        //    }
+        //}
 
         //criar spawners (game ObjecT) at the points
         // Instance.Pool.GetObject("Spawner").GetComponent<EnemySpawner>().Spawn(point);

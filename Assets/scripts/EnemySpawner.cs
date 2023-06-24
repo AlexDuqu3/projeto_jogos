@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
             mobsPercentage.Add(new Item() { enemy = enemies[i],chance = percentages[i] });
         }
 
-        StartCoroutine(spawnEnemy(interval, mobsPercentage));
+        //StartCoroutine(spawnEnemy(interval, mobsPercentage));
     }
 
     // Update is called once per frame
