@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NexusNonBuildArea : MonoBehaviour
+public class Nexus : MonoBehaviour
 {
     Point[] adjacentPoints;
     Tile tile;
@@ -30,5 +30,10 @@ public class NexusNonBuildArea : MonoBehaviour
     {
        
         //tile.ColorAdjacentTiles(Color.white, adjacentPoints);
+    }
+
+    public void LoseHealth(int damage)
+    {
+        GameManage.Instance.Health-= damage;
     }
 }

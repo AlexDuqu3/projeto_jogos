@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6298739619359523951}
-  m_Layer: 20
+  m_Layer: 3
   m_Name: Rune
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6395405610018341818}
   - {fileID: 3288888163621239586}
   m_Father: {fileID: 8073163712863166434}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2181155058494615472
 GameObject:
@@ -45,7 +45,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181155058494615473}
   - component: {fileID: 2181155058494615474}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TX Props Altar Rune 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181155058972476565}
   - component: {fileID: 2181155058972476566}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TX Props Altar Rune 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2181155059286774468}
   - component: {fileID: 2181155059286774469}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TX Props Altar Rune 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3288888163621239586}
   - component: {fileID: 273752381707144525}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +382,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5962935068133127930}
   - component: {fileID: 5258625610995244408}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -467,7 +467,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7372140128752641127}
   - component: {fileID: 7004361972105204810}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -541,64 +541,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
---- !u!1 &5459536180389446116
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2116466546335126104}
-  - component: {fileID: 1945254952951527567}
-  - component: {fileID: 8241371628798802577}
-  m_Layer: 0
-  m_Name: nonBuildArea
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2116466546335126104
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459536180389446116}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.61, y: -0.58, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8073163712863166434}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1945254952951527567
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459536180389446116}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3.5293586, y: 3.537608, z: 1}
-  m_Center: {x: 3.6120615, y: 0.6108996, z: 0}
---- !u!114 &8241371628798802577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5459536180389446116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe739d6330e65942b989258db5c4f34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7814778762106736124
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +551,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6395405610018341818}
   - component: {fileID: 4690065210954316846}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -696,9 +638,10 @@ GameObject:
   - component: {fileID: 8073163712863166432}
   - component: {fileID: 5584297456473166625}
   - component: {fileID: 4583146789752161552}
-  m_Layer: 20
+  - component: {fileID: 8520656067531945723}
+  m_Layer: 3
   m_Name: nexus2
-  m_TagString: Untagged
+  m_TagString: Nexus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -715,7 +658,6 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2116466546335126104}
   - {fileID: 6298739619359523951}
   - {fileID: 6371599489735249524}
   m_Father: {fileID: 0}
@@ -817,6 +759,18 @@ MonoBehaviour:
   - {fileID: 4690065210954316846}
   - {fileID: 273752381707144525}
   lerpSpeed: 3
+--- !u!114 &8520656067531945723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073163712863166437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe739d6330e65942b989258db5c4f34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2181155059827064758
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -824,6 +778,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8073163712863166434}
     m_Modifications:
+    - target: {fileID: 5055698509786747552, guid: 6d6991dbbdeecb1488bbf78c063d1235,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5055698509786747553, guid: 6d6991dbbdeecb1488bbf78c063d1235,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -854,10 +813,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: PF Props Rune Pillar X2
       objectReference: {fileID: 0}
+    - target: {fileID: 5055698509961064897, guid: 6d6991dbbdeecb1488bbf78c063d1235,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5055698509961064898, guid: 6d6991dbbdeecb1488bbf78c063d1235,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5055698509961064898, guid: 6d6991dbbdeecb1488bbf78c063d1235,
         type: 3}
@@ -923,6 +887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 5055698510374027886, guid: 6d6991dbbdeecb1488bbf78c063d1235,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8220105155279299501, guid: 6d6991dbbdeecb1488bbf78c063d1235,
         type: 3}

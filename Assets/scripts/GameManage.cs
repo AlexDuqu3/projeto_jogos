@@ -10,7 +10,11 @@ public class GameManage : Singleton<GameManage>
     public Tower selectedTower { get; set; }
     private Text currencyText;
     private Text healthText;
+    private Text waveText;
+    [SerializeField]
+    private GameObject EnemySpawner;
     private bool gameOver = false;
+    public ObjectPool Pool { get; set; }
     private int towersAdjacentRadius;
     public int TowersAdjacentRadius
     {
@@ -39,28 +43,39 @@ public class GameManage : Singleton<GameManage>
         get => health; set
         {
             health = value;
-            if(health <= 0)
+            if (health <= 0)
             {
                 health = 0;
                 GameOver();
             }
             healthText.text = health.ToString() + "<color=red>♥</color>";
-            
+
         }
     }
-
+    private int wave;
+    public int Wave
+    {
+        get => wave; set
+        {
+            wave = value;
+            //waveText.text = "Wave/"+wave.ToString();
+        }
+    }
     private void Awake()
     {
+       // waveText= GameObject.Find("Stats/WaveStats").GetComponent<Text>();
         currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
+        Pool = GetComponent<ObjectPool>();
     }
 
 
     private void Start()
     {
         Health = 10;
-        Currency = 50;
-        TowersAdjacentRadius = 2; //3x3
+        Currency = 50000;
+        TowersAdjacentRadius = 3; //3x3
+        Wave = 1;
     }
 
     private void Update()
@@ -150,6 +165,55 @@ public class GameManage : Singleton<GameManage>
         {
             gameOver = true;
         }
+    }
+
+    public void StartWave()
+    {
+        StartCoroutine(SpawnWave());
+    }
+    private IEnumerator SpawnWave()
+    {
+        //int monsterIndex = Random.Range(0, 4);
+        //string type = string.Empty;
+        //switch (monsterIndex)
+        //{
+        //    case 0:
+        //        type = "BlueMonster";
+        //        break;
+        //    case 1:
+        //        type = "GreenMonster";
+        //        break;
+        //    case 2:
+        //        type = "PurpleMonster";
+        //        break;
+        //    case 3:
+        //        type = "RedMonster";
+        //        break;
+        //}   
+        //Pool.GetObject(type).GetComponent<Enemy>();
+        Vector2 spawnPoint = LevelManager.Instance.GetRandomPointOutsideMap(10);
+        bool foundValidSpawnPoint = false;
+
+        while (!foundValidSpawnPoint)
+        {
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint, 1f);
+
+            if (colliders.Length == 0)
+            {
+                // No colliders found, it's a valid spawn point
+                foundValidSpawnPoint = true;
+                Instantiate(EnemySpawner, spawnPoint, Quaternion.identity);
+            }
+            else
+            {
+                // There are colliders, try finding another point
+                spawnPoint = LevelManager.Instance.GetRandomPointOutsideMap(10);
+            }
+        }
+
+        //criar spawners (game ObjecT) at the points
+        // Instance.Pool.GetObject("Spawner").GetComponent<EnemySpawner>().Spawn(point);
+        yield return new WaitForSeconds(2.5f);
     }
 
 }

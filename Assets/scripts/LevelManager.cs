@@ -20,6 +20,11 @@ public class LevelManager : Singleton<LevelManager>
         private set { mapPosition = value; }
     }
     private Point nexusPoint;
+    public Point NexusPoint
+    {
+        get { return nexusPoint; }
+        private set { nexusPoint = value; }
+    }
     [SerializeField]
     private GameObject nexusPrefab;
     public Dictionary<Point, Tile> Tiles { get; set; }
@@ -84,8 +89,8 @@ public class LevelManager : Singleton<LevelManager>
 
         int nexusPosX = UnityEngine.Random.Range(minNexusPosX, maxNexusPosX + 1);
         int nexusPosY = UnityEngine.Random.Range(minNexusPosY, maxNexusPosY + 1);
-        nexusPoint= new Point(nexusPosX, nexusPosY);
-        Tile tile = Tiles[nexusPoint];
+        NexusPoint= new Point(nexusPosX, nexusPosY);
+        Tile tile = Tiles[NexusPoint];
         Vector2 worldPositionNexus = tile.PlaceNexus(nexusPrefab);
         return worldPositionNexus;
 
@@ -107,5 +112,45 @@ public class LevelManager : Singleton<LevelManager>
         }
         // Tile not found, return null or handle the case accordingly
         return null;
-    }   
+    }
+
+    public Vector2 GetRandomPointOutsideMap(int radius)
+    {
+        Vector3 maxTile = Tiles[new Point((int)MapPosition.x - 1, (int)MapPosition.y - 1)].transform.position;
+        Vector3 mapSize = new Vector3(maxTile.x + TileSize, maxTile.y - TileSize);
+        int mapWidth = (int)mapSize.x;
+        int mapHeight = (int)mapSize.y;
+        int minX = -radius;
+        int maxX = mapWidth + radius;
+        int minY = -radius;
+        int maxY = mapHeight + radius;
+
+        List<Vector2> eligiblePoints = new List<Vector2>();
+        // Collect eligible points
+        for (int x = minX; x < maxX; x++)
+        {
+            for (int y = minY; y < maxY; y++)
+            {
+                Vector2 point = new Vector2(x, y);
+
+                // Check if the point is outside the map, but within the radius
+                if (Vector2.Distance(point, new Vector2(mapWidth / 2, mapHeight / 2)) > (mapWidth / 2) + radius)
+                {
+                    eligiblePoints.Add(point);
+                }
+            }
+        }
+
+        // Return a random point from the eligible points
+        if (eligiblePoints.Count > 0)
+        {
+            int randomIndex = UnityEngine.Random.Range(0, eligiblePoints.Count);
+            return eligiblePoints[randomIndex];
+        }
+        else
+        {
+            // Return a default point if no eligible points are found
+            return Vector2.zero;
+        }
+    }
 }

@@ -10,9 +10,17 @@ public class EnemySpawner : MonoBehaviour
     private GameObject[] enemies;
     [SerializeField]
     private int[] percentages;
+    private GameObject enemy;
 
     //mais variaveis para cada tipo de inimigo
-
+    private void Awake()
+    {
+        enemy = GameObject.Find("Enemy");
+        if (enemy == null)
+        {
+            enemy = new GameObject("Enemy");
+        }
+    }
     [SerializeField]
     private float interval = 1.5f;
 
@@ -38,8 +46,14 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(interval);
         Item enemyPercent = ProportionalWheelSelection.SelectItem(mobsPercentage);
-        Enemy enemyObj = Enemy.Create(enemyPercent.enemy, new Vector3(Random.Range(-5f, 5), Random.Range(-6f, 6f), 0));
+        Enemy enemyObj = Enemy.Create(enemyPercent.enemy, new Vector3(Random.Range(-5f, 5)+transform.position.x, Random.Range(-6f, 6f)+transform.position.y, 0));
+        enemyObj.transform.parent = enemy.transform;
         StartCoroutine(spawnEnemy(interval, mobsPercentage));
+    }
+
+    public void Spawn(Vector2 position)
+    {
+        
     }
 
 }

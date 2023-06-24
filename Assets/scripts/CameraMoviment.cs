@@ -8,6 +8,8 @@ public class CameraMoviment : MonoBehaviour
     [SerializeField]
     private float cameraSpeed;
     private float xMax, yMin;
+    private Vector3 dragOrigin;
+    private bool isDragging = false;
 
     private void Awake()
     {
@@ -20,23 +22,32 @@ public class CameraMoviment : MonoBehaviour
     }
     private void GetInput()
     {
-        if (Input.GetKey(KeyCode.W))
+        // Handle mouse input for dragging the camera
+        if (Input.GetMouseButtonDown(0))
         {
-            transform.Translate(Vector3.up* cameraSpeed * Time.deltaTime);
+            isDragging = true;
+            dragOrigin = Input.mousePosition;
         }
-        if (Input.GetKey(KeyCode.A))
+        else if (Input.GetMouseButtonUp(0))
         {
-            transform.Translate(Vector3.left * cameraSpeed * Time.deltaTime);
+            isDragging = false;
         }
-        if (Input.GetKey(KeyCode.S))
+
+        // Handle camera movement while dragging
+        if (isDragging)
         {
-            transform.Translate(Vector3.down * cameraSpeed * Time.deltaTime);
+            Vector3 currentMousePos = Input.mousePosition;
+            Vector3 dragDirection = currentMousePos - dragOrigin;
+            transform.Translate(-dragDirection * cameraSpeed * Time.deltaTime);
+            dragOrigin = currentMousePos;
         }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(Vector3.right * cameraSpeed * Time.deltaTime);
-        }
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, 0, xMax), Mathf.Clamp(transform.position.y, yMin,0),-10);
+
+        // Clamp camera position within limits
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, 0, xMax),
+            Mathf.Clamp(transform.position.y, yMin, 0),
+            -10
+        );
     }
 
     public void SetLimits(Vector3 maxTile)
