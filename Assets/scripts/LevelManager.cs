@@ -2,6 +2,7 @@ using Newtonsoft.Json.Bson;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     private CameraMoviment cameraMoviment;
     private GameObject map;
+    private List<Vector2> spawnPositions;
+    public List<Vector2> SpawnPositions { get => spawnPositions; private set => spawnPositions = value; }
     private Vector2 mapPosition;
     public Vector2 MapPosition
     {
@@ -31,6 +34,7 @@ public class LevelManager : Singleton<LevelManager>
     private RandomPointsGenerator randomPointsGenerator;
     public RandomPointsGenerator RandomPointsGenerator { get => randomPointsGenerator; set => randomPointsGenerator = value; }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +43,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void CreateLevel()
     {
+        spawnPositions = new List<Vector2>();
         Tiles = new Dictionary<Point, Tile>();
         map = new GameObject("Map");
         string[] mapData = ReadLevelText();
@@ -56,9 +61,9 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
         Vector2 worldPositionNexus = SpawnNexus();
-        CreateOuterSquare(10);
+        //CreateOuterSquare(10);
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;
-        RandomPointsGenerator = new RandomPointsGenerator(MapPosition, new Vector2(maxTile.x + TileSize, maxTile.y - TileSize), new Vector2(20, 20),TileSize);
+        RandomPointsGenerator = new RandomPointsGenerator(worldStartPosition, new Vector2(maxTile.x, maxTile.y), new Vector2Int(10, 10), TileSize);
         //camera
         cameraMoviment.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
 
@@ -122,17 +127,16 @@ public class LevelManager : Singleton<LevelManager>
 
     private void CreateOuterSquare(int distance)
     {
-
-        int innerMapX = (int)MapPosition.x;
-        int innerMapY = (int)MapPosition.y;
-
+        //distance = 100;
+        int innerMapX = (int)MapPosition.x+distance*2;
+        int innerMapY = (int)MapPosition.y+distance*2;
         int outerMapX = innerMapX + (2 * distance);
         int outerMapY = innerMapY + (2 * distance);
-
+   
         Vector3 worldStartPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
 
         // Calculate the starting position of the outer square
-        Vector3 outerSquareStart = new Vector3(worldStartPosition.x - (TileSize * distance), worldStartPosition.y + (TileSize * distance), 0);
+        Vector3 outerSquareStart = new Vector3(worldStartPosition.x - (TileSize * distance*2), worldStartPosition.y + (TileSize * distance*2), 0);
 
         // Create the outer square using the outerMapX and outerMapY values
         // You can use these values to determine the positions and sizes of the outer tiles or objects
@@ -140,51 +144,34 @@ public class LevelManager : Singleton<LevelManager>
         // Example code to create outer tiles
         for (int y = 0; y < outerMapY; y++)
         {
-            for (int x = 0; x < outerMapX; x++)
+            for (int x = 0; x < outerMapX; y++)
             {
+                Vector3 position = outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0);
                 if (x < distance || x >= (innerMapX + distance) || y < distance || y >= (innerMapY + distance))
                 {
-                   
+
                     // Create outer tile at position (x, y)
                     // Adjust the position based on the outerSquareStart and TileSize
-                    Instantiate(tilePrefabs[3], outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
+                    Instantiate(tilePrefabs[3], position, Quaternion.identity);
+                    spawnPositions.Add(position);
                 }
                 else if (x >= distance && x < (innerMapX + distance) && (y == distance || y == (innerMapY + distance - 1)))
                 {
-                    Instantiate(tilePrefabs[3], outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
+                    Instantiate(tilePrefabs[3], position, Quaternion.identity);
+                    spawnPositions.Add(position);
                     // Create frame tile on the top and bottom rows of the inner square
                     // Adjust the position based on the outerSquareStart and TileSize
                     // Example: Instantiate(frameTilePrefab, outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
                 }
                 else if ((x == distance || x == (innerMapX + distance - 1)) && y >= distance && y < (innerMapY + distance))
                 {
-                    Instantiate(tilePrefabs[3], outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
+                    Instantiate(tilePrefabs[3], position, Quaternion.identity);
+                    spawnPositions.Add(position);
                     // Create frame tile on the left and right columns of the inner square
                     // Adjust the position based on the outerSquareStart and TileSize
                     // Example: Instantiate(frameTilePrefab, outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
                 }
             }
         }
-    }
-    public Vector2 GetRandomPointInOuterSquareButNotInInnerSquare(int distance, int innerDistance)
-    {
-        Vector2 randomPoint = new Vector2(
-            UnityEngine.Random.Range(-distance, MapPosition.x + distance),
-            UnityEngine.Random.Range(-distance, MapPosition.y + distance)
-        );
-
-        // Ensure the random point is within the outer square but not inside the inner square
-        if (IsPointInsideInnerSquare(randomPoint, innerDistance))
-        {
-            randomPoint = GetRandomPointInOuterSquareButNotInInnerSquare(distance, innerDistance); // Recursive call to get another random point
-        }
-
-        return randomPoint;
-    }
-
-    private bool IsPointInsideInnerSquare(Vector2 point, int innerDistance)
-    {
-        return point.x >= innerDistance && point.x <= MapPosition.x - innerDistance
-            && point.y >= innerDistance && point.y <= MapPosition.y - innerDistance;
     }
 }
