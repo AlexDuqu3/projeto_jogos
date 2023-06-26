@@ -59,12 +59,12 @@ public class GameManage : Singleton<GameManage>
         get => wave; set
         {
             wave = value;
-            //waveText.text = "Wave/"+wave.ToString();
+            waveText.text = "Wave/"+wave.ToString();
         }
     }
     private void Awake()
     {
-        // waveText= GameObject.Find("Stats/WaveStats").GetComponent<Text>();
+        waveText= GameObject.Find("Stats/WaveText").GetComponent<Text>();
         currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
         Pool = GetComponent<ObjectPool>();
@@ -194,16 +194,8 @@ public class GameManage : Singleton<GameManage>
         //Pool.GetObject(type).GetComponent<Enemy>();
 
         //List<Vector2> position = LevelManager.Instance.SpawnPositions;
-        Vector2[] position = LevelManager.Instance.RandomPointsGenerator.GenerateRandomPoints(1000);
-        int outerDistance = 10; // Distance from inner square to outer square
-        int innerDistance = 5; // Distance from inner square edge to inner square content
-
-        //Vector2 randomPoint = LevelManager.Instance.GetRandomPointInOuterSquareButNotInInnerSquare(outerDistance, innerDistance);
-        //Instantiate(EnemySpawner, randomPoint, Quaternion.identity);
-        foreach (Vector2 point in position)
-        {
-            Instantiate(EnemySpawner, point, Quaternion.identity);
-        }
+        EnemyManager.Instance.AddEnemiesSpawners(Wave*2);
+        Wave += 1;
         //bool foundValidSpawnPoint = false;
 
         //while (!foundValidSpawnPoint)

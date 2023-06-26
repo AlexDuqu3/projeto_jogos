@@ -48,7 +48,8 @@ MonoBehaviour:
   enemies:
   - {fileID: 8380036955330671484, guid: 80d6fcc59800bcf44973826b67394674, type: 3}
   - {fileID: 5074837194817401629, guid: b4120744480291c489b99a90cad4bb67, type: 3}
-  percentages: 6400000064000000
+  percentages: e8030000e8030000
+  maxEnemies: 10
   interval: 1
 --- !u!1001 &2849463940478782512
 PrefabInstance:
