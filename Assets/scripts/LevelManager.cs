@@ -61,7 +61,7 @@ public class LevelManager : Singleton<LevelManager>
             }
         }
         Vector2 worldPositionNexus = SpawnNexus();
-        CreateOuterSquare(10);
+        //CreateOuterSquare(10);
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;
         RandomPointsGenerator = new RandomPointsGenerator(worldStartPosition, new Vector2(maxTile.x, maxTile.y), new Vector2Int(10, 10));
         //camera

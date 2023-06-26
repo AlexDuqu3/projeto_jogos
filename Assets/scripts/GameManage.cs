@@ -194,7 +194,7 @@ public class GameManage : Singleton<GameManage>
         //Pool.GetObject(type).GetComponent<Enemy>();
 
         //List<Vector2> position = LevelManager.Instance.SpawnPositions;
-        Vector2[] position = LevelManager.Instance.RandomPointsGenerator.GenerateRandomPoints(20);
+        Vector2[] position = LevelManager.Instance.RandomPointsGenerator.GenerateRandomPoints(1000);
         int outerDistance = 10; // Distance from inner square to outer square
         int innerDistance = 5; // Distance from inner square edge to inner square content
 
