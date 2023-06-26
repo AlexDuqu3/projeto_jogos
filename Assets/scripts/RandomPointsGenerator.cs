@@ -6,24 +6,35 @@ public class RandomPointsGenerator
 {
     Vector3 InnerStartPosition;
     Vector3 InnerEndPosition;
-
     Vector3 OuterStartPosition;
     Vector3 OuterEndPosition;
     public Vector2Int distance;
-    public float TileSize;
 
-    public RandomPointsGenerator(Vector3 innerSquareStart, Vector3 innerSquareEnd, Vector2Int outSize,float TileSize)
+    Vector2[] square1 = new Vector2[2];
+    Vector2[] square2 = new Vector2[2];
+    Vector2[] square3 = new Vector2[2];
+    Vector2[] square4 = new Vector2[2];
+
+    public RandomPointsGenerator(Vector3 innerSquareStart, Vector3 innerSquareEnd, Vector2Int outSize)
     {
         OuterStartPosition = new Vector3(innerSquareStart.x - outSize.x, innerSquareStart.y + outSize.y);
         OuterEndPosition = new Vector3(innerSquareEnd.x + outSize.x, innerSquareEnd.y - outSize.y);
-        InnerStartPosition= innerSquareStart;
-        InnerEndPosition= innerSquareEnd;
-        this.distance = outSize;
-        this.TileSize = TileSize;
-        Vector3 worldStartPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+        InnerStartPosition = innerSquareStart;
+        InnerEndPosition = innerSquareEnd;
 
-        // Calculate the starting position of the outer square
-       
+        square1[0] = new Vector2(OuterStartPosition.x, OuterStartPosition.y);
+        square1[1] = new Vector2(OuterEndPosition.x, innerSquareStart.y);
+
+        square2[0] = new Vector2(OuterStartPosition.x, OuterStartPosition.y);
+        square2[1] = new Vector2(innerSquareStart.x, OuterEndPosition.y);
+
+        square3[0] = new Vector2(OuterStartPosition.x, innerSquareEnd.y);
+        square3[1] = new Vector2(OuterEndPosition.x, OuterEndPosition.y);
+
+        square4[0] = new Vector2(innerSquareEnd.x, OuterStartPosition.y);
+        square4[1] = new Vector2(OuterEndPosition.x, OuterEndPosition.y);
+
+        this.distance = outSize;
     }
  
     public Vector2[] GenerateRandomPoints(int numberOfPoints)
@@ -31,7 +42,7 @@ public class RandomPointsGenerator
         Vector2[] randomPoints = new Vector2[numberOfPoints];
         for (int i = 0; i < numberOfPoints; i++)
         {
-
+            randomPoints[i] = GetRandomPoint();
            
            
         }
@@ -42,38 +53,11 @@ public class RandomPointsGenerator
     {
 
         Vector2 randomPoint;
-        bool isInsideInnerRect = true;
+        //Random.Range(OuterStartPosition.x, OuterEndPosition.x + 1), Random.Range(OuterStartPosition.y, OuterEndPosition.y + 1)
+        var r = new System.Random();
+        int randomPosition = r.Next(0, 3);
 
-        do
-        {
-            randomPoint = new Vector2(Random.Range(OuterStartPosition.x, OuterEndPosition.x + 1), Random.Range(OuterStartPosition.y, OuterEndPosition.y + 1));
-            int x= (int)randomPoint.x;
-            int y = (int)randomPoint.y;
-            int distance = this.distance.x;
-            int innerMapX = (int)InnerStartPosition.x;
-            int innerMapY = (int)InnerStartPosition.y;
-            if (x < distance || x >= (innerMapX + distance) || y < distance || y >= (innerMapY + distance))
-            {
-
-                // Create outer tile at position (x, y)
-                // Adjust the position based on the outerSquareStart and TileSize
-                isInsideInnerRect=false;
-            }
-            else if (x >= distance && x < (innerMapX + distance) && (y == distance || y == (innerMapY + distance - 1)))
-            {
-                isInsideInnerRect = false;
-                // Create frame tile on the top and bottom rows of the inner square
-                // Adjust the position based on the outerSquareStart and TileSize
-                // Example: Instantiate(frameTilePrefab, outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
-            }
-            else if ((x == distance || x == (innerMapX + distance - 1)) && y >= distance && y < (innerMapY + distance))
-            {
-                isInsideInnerRect = false;
-                // Create frame tile on the left and right columns of the inner square
-                // Adjust the position based on the outerSquareStart and TileSize
-                // Example: Instantiate(frameTilePrefab, outerSquareStart + new Vector3(TileSize * x, -TileSize * y, 0), Quaternion.identity);
-            }
-        } while (isInsideInnerRect);
+        randomPoint = new Vector2(Random.Range(square1[0].x, square1[1].x + 1), Random.Range(square1[0].y, square1[1].y + 1));
 
         return randomPoint;
     }
