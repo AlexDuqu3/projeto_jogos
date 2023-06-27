@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -46,4 +47,17 @@ public class EnemyManager : Singleton<EnemyManager>
     {
         
     }
+
+    public bool IsAllSpawnersDone()
+    {
+        return enemiesSpawners.All(spawner => spawner.IsSpawning == false);
+    }
+    public bool IsAllEnemiesDead()
+    {
+        return enemiesSpawners.All(spawner => spawner.Enemies.Count == 0);
+    }
+ public void spawnAll()
+    {
+        enemiesSpawners.ForEach(spawner => spawner.spawnEnemy());
+    } 
 }

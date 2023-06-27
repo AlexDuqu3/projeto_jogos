@@ -16,6 +16,10 @@ public class Enemy : MonoBehaviour
     private LayerMask obstacleLayerMask;
     private HealthBar healthBar;
     private Transform pfHealthBar;
+    private EnemySpawner parentSpawner;
+
+    public EnemySpawner ParentSpawner { get => parentSpawner; set => parentSpawner = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,8 +52,9 @@ public class Enemy : MonoBehaviour
                 //
                 Enemy.enemyList.Remove(this);
                 this.healthBar.destroyThis();
+                parentSpawner.RemoveEnemy(this);
                 Destroy(gameObject);
-                Destroy(this);
+                //Destroy(this);
             }
         }
     }
@@ -148,6 +153,9 @@ public class Enemy : MonoBehaviour
             yield return null;
         }
         transform.localScale = to;
-        if (remove) Destroy(gameObject);
+        if (remove) {
+            parentSpawner.RemoveEnemy(this);
+            Destroy(gameObject);
+                };
     }
 }

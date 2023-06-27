@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
 using Unity.VisualScripting;
@@ -12,11 +13,14 @@ public class GameManage : Singleton<GameManage>
     private Text currencyText;
     private Text healthText;
     private Text waveText;
+    private Text timerText;
     [SerializeField]
     private GameObject EnemySpawner;
     private bool gameOver = false;
     public ObjectPool Pool { get; set; }
     private int towersAdjacentRadius;
+    private float waveDelay;
+    private bool waitingForNextWave;
     public int TowersAdjacentRadius
     {
         get
@@ -62,9 +66,24 @@ public class GameManage : Singleton<GameManage>
             waveText.text = "Wave/"+wave.ToString();
         }
     }
+    private float waveTimer;
+    public float WaveTimer
+    {
+        get => waveTimer; set
+        {
+            waveTimer = value;
+            // Convert elapsed time to TimeSpan
+            TimeSpan timeSpan = TimeSpan.FromSeconds(waveTimer);
+
+            // Format the time string
+            string formattedTime = string.Format("{0:00}:{1:00}:{2:00}", timeSpan.Hours, timeSpan.Minutes, timeSpan.Seconds);
+            timerText.text = formattedTime.ToString();
+        }
+    }
     private void Awake()
     {
-        waveText= GameObject.Find("Stats/WaveText").GetComponent<Text>();
+        timerText = GameObject.Find("Stats/TimerText").GetComponent<Text>();
+        waveText = GameObject.Find("Stats/WaveText").GetComponent<Text>();
         currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
         Pool = GetComponent<ObjectPool>();
@@ -76,12 +95,33 @@ public class GameManage : Singleton<GameManage>
         Health = 10;
         Currency = 50000;
         TowersAdjacentRadius = 3; //3x3
-        Wave = 1;
+        Wave = 0;
+        waveDelay = 10f;
+        waitingForNextWave = false;
     }
 
     private void Update()
     {
         HandleEscape();
+        if (!IsWaveActive() && !waitingForNextWave)
+        {
+            // Iniciar a contagem regressiva para a próxima wave
+            waitingForNextWave = true;
+            waveTimer = waveDelay;
+        }
+
+        if (waitingForNextWave)
+        {
+            WaveTimer = waveTimer;
+            waveTimer -= Time.deltaTime;
+
+            if (waveTimer <= 0f)
+            {
+                StartWave();
+                waveTimer = waveDelay;
+                waitingForNextWave = false;
+            }
+        }
     }
     public void SelectTower(Tower tower)
     {
@@ -174,6 +214,7 @@ public class GameManage : Singleton<GameManage>
     }
     private IEnumerator SpawnWave()
     {
+        WaveTimer = 0f;
         //int monsterIndex = Random.Range(0, 4);
         //string type = string.Empty;
         //switch (monsterIndex)
@@ -194,30 +235,15 @@ public class GameManage : Singleton<GameManage>
         //Pool.GetObject(type).GetComponent<Enemy>();
 
         //List<Vector2> position = LevelManager.Instance.SpawnPositions;
-        EnemyManager.Instance.AddEnemiesSpawners(Wave*2);
         Wave += 1;
-        //bool foundValidSpawnPoint = false;
+        EnemyManager.Instance.AddEnemiesSpawners(Wave+2);
+        EnemyManager.Instance.spawnAll();
 
-        //while (!foundValidSpawnPoint)
-        //{
-        //    Collider2D[] colliders = Physics2D.OverlapCircleAll(spawnPoint, 1f);
-
-        //    if (colliders.Length == 0)
-        //    {
-        //        // No colliders found, it's a valid spawn point
-        //        foundValidSpawnPoint = true;
-        //        Instantiate(EnemySpawner, spawnPoint, Quaternion.identity);
-        //    }
-        //    else
-        //    {
-        //        // There are colliders, try finding another point
-        //        spawnPoint = LevelManager.Instance.GetRandomPointOutsideMap(10);
-        //    }
-        //}
-
-        //criar spawners (game ObjecT) at the points
-        // Instance.Pool.GetObject("Spawner").GetComponent<EnemySpawner>().Spawn(point);
         yield return new WaitForSeconds(2.5f);
     }
 
+    private bool IsWaveActive()
+    {
+        return !EnemyManager.Instance.IsAllSpawnersDone() || !EnemyManager.Instance.IsAllEnemiesDead();
+    }
 }
