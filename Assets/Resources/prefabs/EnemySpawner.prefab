@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbc21dd548e8bd4096c34eb69e6efd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
+  enemiesPrefab:
   - {fileID: 8380036955330671484, guid: 80d6fcc59800bcf44973826b67394674, type: 3}
   - {fileID: 5074837194817401629, guid: b4120744480291c489b99a90cad4bb67, type: 3}
-  percentages: 6400000064000000
+  percentages: e8030000e8030000
+  maxEnemies: 2
   interval: 1
 --- !u!1001 &2849463940478782512
 PrefabInstance:

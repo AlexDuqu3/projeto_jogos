@@ -7,6 +7,8 @@ using System;
 using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
+using System.Drawing;
 
 public class Tower : MonoBehaviour
 {
@@ -140,7 +142,7 @@ public class Tower : MonoBehaviour
             {
                 if (GameManage.Instance.selectedTower != null)
                 {
-                    GameManage.Instance.DeselectTower();
+                    GameManage.Instance.DeselectTower(this);
                     return;
                 }
                 GameManage.Instance.SelectTower(this);
@@ -156,7 +158,33 @@ public class Tower : MonoBehaviour
     public void Select()
     {
         //Selects a tower a displays the upgrade panel TODO: maybe we should display also the towers stats and the tower range object here.
+        rangeCircle.SetActive(true);
         upgradePanel.SetActive(!upgradePanel.activeSelf);
+        drawCircle();
+    }
+
+    public void Deselect()
+    {
+        rangeCircle.SetActive(false);
+    }
+
+    private void drawCircle()
+    {
+        LineRenderer LineDrawer = rangeCircle.GetComponent<LineRenderer>();
+        float Theta = 0f;
+        float ThetaScale = 0.01f;
+        int Size = (int)((1f / ThetaScale) + 1f);
+        LineDrawer.positionCount = Size;
+        LineDrawer.startWidth = 0.11f;
+        LineDrawer.endWidth = 0.11f;
+
+        for (int i = 0; i < Size; i++)
+        {
+            Theta += (2.0f * Mathf.PI * ThetaScale);
+            float x = range * Mathf.Cos(Theta);
+            float y = range * Mathf.Sin(Theta);
+            LineDrawer.SetPosition(i, new Vector3(x + transform.position.x, y + transform.position.y));
+        }
     }
 
     public virtual void Upgrade()
