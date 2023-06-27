@@ -27,6 +27,8 @@ public class Tower : MonoBehaviour
 
     [SerializeField] private AudioSource upgradeSound, sellSound, shotSound;
 
+    private GameObject rangeCircle;
+
 
     public int level;
     private int price;
@@ -62,6 +64,8 @@ public class Tower : MonoBehaviour
         weapon = transform.Find("weapon").gameObject;
         colliderObject = transform.Find("range").gameObject;
         upgradePanel = transform.Find("upgradePanel").gameObject;
+        rangeCircle = transform.Find("RangeCircle").gameObject;
+
         Debug.Log(upgradePanel.gameObject.ToString());
 
 
