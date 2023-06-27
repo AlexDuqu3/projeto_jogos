@@ -20,6 +20,12 @@ public class Tower : MonoBehaviour
     private float shootTimer;
     public TowerUpgrade[] towerUpgrades { get; protected set; }
     private GameObject upgradePanel;
+
+    public Button panelUpgradeButton, panelSellButton;
+
+    [SerializeField] private AudioSource upgradeSound, sellSound, shotSound;
+
+
     public int level;
     private int price;
     public int Price
@@ -48,14 +54,17 @@ public class Tower : MonoBehaviour
 
     public virtual void Awake()
     {
+        Debug.Log("Void Tower Awake");
         level= 1;
         BindingUpgradePanelButtons();
         weapon = transform.Find("weapon").gameObject;
         colliderObject = transform.Find("range").gameObject;
         upgradePanel = transform.Find("upgradePanel").gameObject;
+        Debug.Log(upgradePanel.gameObject.ToString());
+
 
     }
-    
+
     // Update is called once per frame
     void Update()
     {   shootTimer -= Time.deltaTime;
@@ -91,11 +100,15 @@ public class Tower : MonoBehaviour
             weaponClass = weapon.AddComponent<Weapon>();
         }
         weaponClass.Shoot(enemy);
+        Debug.Log("Shoot");
+        Debug.Log(shotSound);
+        SoundManager.Instance.PlayAudioSource(shotSound);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision");
+        //Debug.Log("Collision");
     }
     /* private Vector3 GetClosestEnemy()
      {
@@ -148,6 +161,8 @@ public class Tower : MonoBehaviour
 
     public virtual void Upgrade()
     {
+        Debug.Log("Dentro do Upgrade");
+        SoundManager.Instance.PlayUpgradeSound();
         GameManage.Instance.Currency -= NextUpgrade.Price;
         Price += NextUpgrade.Price;
         this.damage += NextUpgrade.Damage;
@@ -164,6 +179,7 @@ public class Tower : MonoBehaviour
         newTowerClass.GetComponent<Tower>().range = range;
         newTowerClass.GetComponent<SpriteRenderer>().sortingOrder=gameObject.GetComponent<SpriteRenderer>().sortingOrder;
         GameManage.Instance.SelectTower(newTowerClass);
+
         Destroy(gameObject);
         if (newTowerObject.transform.Find("upgradePanel").gameObject.transform.Find("upgrade") != null)
         {
@@ -176,15 +192,23 @@ public class Tower : MonoBehaviour
 
     public void Sell()
     {
+        SoundManager.Instance.PlaySellSound();
+
         Destroy(gameObject);
     }
 
     protected void BindingUpgradePanelButtons()
     {
+        Debug.Log("aqui no biding");
         if(transform.Find("upgradePanel").gameObject.transform.Find("upgrade") != null)
         {
             GameObject upgradeButton = transform.Find("upgradePanel").gameObject.transform.Find("upgrade").gameObject;
+            Debug.Log("AQUIIII");
+            //Debug.Log(upgradeButton);
             Button upgradeButtonComponent = upgradeButton.GetComponent<Button>();
+            //Button upgradeButtonComponent = upgradeButton;
+            Debug.Log(upgradeButtonComponent.interactable.ToString());
+
             if (!(upgradeButtonComponent.onClick.GetPersistentEventCount() > 0))
             {
                 upgradeButtonComponent.onClick.AddListener(() => GameManage.Instance.UpgradeTower());

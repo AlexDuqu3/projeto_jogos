@@ -103,6 +103,7 @@ public class GameManage : Singleton<GameManage>
 
     public void UpgradeTower()
     {
+        Debug.Log("UpgradeTowerFunciotn-GameManager");
         if (selectedTower != null)
         {
             if (selectedTower.level <= selectedTower.towerUpgrades.Length && Currency >= selectedTower.NextUpgrade.Price)
