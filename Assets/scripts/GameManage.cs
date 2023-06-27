@@ -132,13 +132,19 @@ public class GameManage : Singleton<GameManage>
         selectedTower = tower;
         selectedTower.Select();
     }
-    public void DeselectTower()
+    public void DeselectTower(Tower tower)
     {
         if (selectedTower != null)
         {
             selectedTower.Select();
         }
+        selectedTower.Deselect();
         selectedTower = null;
+        if (tower != null)
+        {
+            selectedTower = tower;
+            selectedTower.Select();
+        }
     }
 
     public void UpgradeTower()
@@ -161,8 +167,8 @@ public class GameManage : Singleton<GameManage>
             selectedTile.IsEmpty = true; // clear the tile
             selectedTile.NumberOftowers--; // decrement the number of towers "using" the tile (adjacentS)
             selectedTile.MarkAdjacentPointsPristine(selectedTile.GetAdjacentPoints(GameManage.Instance.TowersAdjacentRadius));//3x3
+            DeselectTower(selectedTower);
             selectedTower.Sell();
-            DeselectTower();
         }
     }
 
@@ -172,7 +178,7 @@ public class GameManage : Singleton<GameManage>
         {
             if (selectedTower != null)
             {
-                DeselectTower();
+                DeselectTower(selectedTower);
             }
             else
             {
