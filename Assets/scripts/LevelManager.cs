@@ -4,12 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class LevelManager : Singleton<LevelManager>
 {
     [SerializeField]
     private GameObject[] tilePrefabs;
+    [SerializeField]
+    private GameObject[] decorations;
     public float TileSize { get { return tilePrefabs[0].GetComponent<SpriteRenderer>().sprite.bounds.size.x; } }
     [SerializeField]
     private CameraMoviment cameraMoviment;
@@ -63,6 +66,8 @@ public class LevelManager : Singleton<LevelManager>
         Vector2 worldPositionNexus = SpawnNexus();
         //CreateOuterSquare(10);
         maxTile = Tiles[new Point(mapX - 1, mapY - 1)].transform.position;
+        SpawnDecorations(worldStartPosition, maxTile);
+
         RandomPointsGenerator = new RandomPointsGenerator(worldStartPosition, new Vector2(maxTile.x, maxTile.y), new Vector2Int(10, 10));
         //camera
         cameraMoviment.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
@@ -105,6 +110,19 @@ public class LevelManager : Singleton<LevelManager>
         Vector2 worldPositionNexus = tile.PlaceNexus(nexusPrefab);
         return worldPositionNexus;
 
+    }
+
+    private void SpawnDecorations(Vector3 worldStartPosition, Vector3 worldEndPosition)
+    {
+        for(int i = 0;i<10;i++)
+        {
+            int decorationPosX = UnityEngine.Random.Range(0, Math.Abs((int)worldEndPosition.x) + Math.Abs((int)worldStartPosition.x));
+            int decorationPosY = UnityEngine.Random.Range(0, Math.Abs((int)worldEndPosition.y) + Math.Abs((int)worldStartPosition.y));
+            int randomDec = UnityEngine.Random.Range(0, 3);
+            Point DecPoint = new Point(decorationPosX, decorationPosY);
+            Tile tile = Tiles[DecPoint];
+            tile.PlaceDecoration(decorations[randomDec]);
+        }
     }
 
     public Tile GetTileAtWorldPosition()
