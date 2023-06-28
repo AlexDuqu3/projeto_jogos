@@ -196,8 +196,15 @@ public class GameManage : Singleton<GameManage>
             TowerPlacementBtn = towerPlacement;
             Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
         }
-
     }
+
+    public void DropTower(TowerPlacement towerPlacement) {
+        
+        TowerPlacementBtn = towerPlacement;
+        Hover.Instance.Deactivate();
+        
+    }
+    
 
     public void BuyTower()
     {

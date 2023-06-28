@@ -119,8 +119,9 @@ public class Tile : MonoBehaviour
     }
 
 
-    private void PlaceTower()
+    public void PlaceTower()
     {
+        Debug.Log("PlaceTower: " + GameManage.Instance.TowerPlacementBtn);
         GameObject tower = Instantiate(GameManage.Instance.TowerPlacementBtn.TowerPrefab, WorldPosition, Quaternion.identity);
         // tower.AddComponent<Tower>();
         tower.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
@@ -201,7 +202,7 @@ public class Tile : MonoBehaviour
         }
         foreach (Point adjacentPoint in adjacentPoints)
         {
-            // Verificar se o tile adjacente existe no dicionário
+            // Verificar se o tile adjacente existe no dicionï¿½rio
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
             {
                 Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];
@@ -254,7 +255,7 @@ public class Tile : MonoBehaviour
     {
         foreach (Point adjacentPoint in adjacentPoints)
         {
-            // Verificar se o tile adjacente existe no dicionário
+            // Verificar se o tile adjacente existe no dicionï¿½rio
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
             {
                 Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];
@@ -269,7 +270,7 @@ public class Tile : MonoBehaviour
     {
         foreach (Point adjacentPoint in adjacentPoints)
         {
-            // Verificar se o tile adjacente existe no dicionário
+            // Verificar se o tile adjacente existe no dicionï¿½rio
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
             {
                 Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];
