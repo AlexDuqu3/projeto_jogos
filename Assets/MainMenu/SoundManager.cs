@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySellSound()
     {
-        if (true)
+        if (_isEffectsOn)
         {
             sellSound.Play();
         }
