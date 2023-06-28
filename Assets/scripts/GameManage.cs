@@ -94,7 +94,7 @@ public class GameManage : Singleton<GameManage>
     private void Start()
     {
         Health = 10;
-        Currency = 50000;
+        Currency = 400;
         TowersAdjacentRadius = 3; //3x3
         Wave = 0;
         waveDelay = 10f;
