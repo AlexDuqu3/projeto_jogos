@@ -157,7 +157,7 @@ public class Tile : MonoBehaviour
 
     }
 
-    public Vector2 PlaceDecoration(GameObject decorationPrefab)
+    public bool PlaceDecoration(GameObject decorationPrefab)
     {
         GameObject decoration = Instantiate(decorationPrefab, WorldPosition, Quaternion.identity);
         if (decoration.transform.Find("Upper"))
@@ -168,6 +168,13 @@ public class Tile : MonoBehaviour
         }
         decoration.transform.SetParent(transform);
         Point[] adjacentPoints = GetAdjacentPoints(1);
+        foreach (var adjacent in adjacentPoints)
+        {
+            if (LevelManager.Instance.Tiles.ContainsKey(adjacent))
+                if (LevelManager.Instance.Tiles[adjacent].isNexusArea)
+                    return false;
+        }
+
         for (int i = 0; i < adjacentPoints.Length; i++)
         {
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoints[i]))
@@ -176,13 +183,12 @@ public class Tile : MonoBehaviour
                 {
                     Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoints[i]];
                     adjacentTile.IsDisable = true;
-                    adjacentTile.isNexusArea = true;
+                    adjacentTile.isNexusArea = false;
                 }
 
             }
         }
-        return WorldPosition;
-
+        return true;
     }
 
     public void ColorTile(Color newColor)

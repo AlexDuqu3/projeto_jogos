@@ -116,12 +116,17 @@ public class LevelManager : Singleton<LevelManager>
     {
         for(int i = 0;i<10;i++)
         {
-            int decorationPosX = UnityEngine.Random.Range(0, Math.Abs((int)worldEndPosition.x) + Math.Abs((int)worldStartPosition.x));
-            int decorationPosY = UnityEngine.Random.Range(0, Math.Abs((int)worldEndPosition.y) + Math.Abs((int)worldStartPosition.y));
-            int randomDec = UnityEngine.Random.Range(0, 3);
-            Point DecPoint = new Point(decorationPosX, decorationPosY);
-            Tile tile = Tiles[DecPoint];
-            tile.PlaceDecoration(decorations[randomDec]);
+            bool isCreated = false;
+            do
+            {
+                int decorationPosX = UnityEngine.Random.Range(0, Math.Abs((int)worldEndPosition.x) + Math.Abs((int)worldStartPosition.x));
+                int decorationPosY = UnityEngine.Random.Range(0, Math.Abs((int)worldEndPosition.y) + Math.Abs((int)worldStartPosition.y));
+                Point DecPoint = new Point(decorationPosX, decorationPosY);
+                Tile tile = Tiles[DecPoint];
+                int randomDec = UnityEngine.Random.Range(0, 3);
+                isCreated = tile.PlaceDecoration(decorations[randomDec]);
+            } while (!isCreated);
+            
         }
     }
 
