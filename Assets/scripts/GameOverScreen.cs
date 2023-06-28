@@ -9,6 +9,11 @@ public class GameOverScreen : MonoBehaviour
         gameObject.SetActive(true);
     }
 
+    public void RestartButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void ExitButton() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }

@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] public AudioSource _audioSource, _effectsSource;
 
-    [SerializeField] private AudioSource upgradeSound, sellSound;
+    [SerializeField] private AudioSource upgradeSound, sellSound, nexusDMG;
 
     public bool _isEffectsOn = true;
 
@@ -62,6 +62,14 @@ public class SoundManager : MonoBehaviour
         if (_isEffectsOn)
         {
             upgradeSound.Play();
+        } 
+    }
+
+    public void PlayNexusDMGSound()
+    {
+        if (_isEffectsOn)
+        {
+            nexusDMG.Play();
         } 
     }
 
