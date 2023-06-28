@@ -1943,7 +1943,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447.9, y: -194.1}
+  m_AnchoredPosition: {x: -447.9, y: -218.40001}
   m_SizeDelta: {x: 214, y: 114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1143159980
@@ -2021,7 +2021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -310.6, y: -275.6}
+  m_AnchoredPosition: {x: -311.5, y: -130}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169822664
@@ -2037,7 +2037,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimap: {fileID: 263266316}
-  button: {fileID: 1169822662}
   showMinimapSprite: {fileID: 21300000, guid: 6baacc52f93df8b4ebbdc16233fa2f15, type: 3}
   hideMinimapSprite: {fileID: 21300000, guid: 142f5e21851f3094a81299376e250727, type: 3}
 --- !u!114 &1169822665
@@ -2664,7 +2663,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447.8, y: -193.90002}
+  m_AnchoredPosition: {x: -447.8, y: -218.2}
   m_SizeDelta: {x: 255.6, y: 127.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564120201
