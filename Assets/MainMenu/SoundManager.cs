@@ -7,15 +7,15 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
-    [SerializeField] private Image barraSom;
+    [SerializeField] public Image barraSom;
 
-    [SerializeField] private Image barraFX;
+    [SerializeField] public Image barraFX;
 
-    [SerializeField] private AudioSource _audioSource, _effectsSource;
+    [SerializeField] public AudioSource _audioSource, _effectsSource;
 
     [SerializeField] private AudioSource upgradeSound, sellSound;
 
-    private bool _isEffectsOn = true;
+    public bool _isEffectsOn = true;
 
     void Awake()
     {
@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySellSound()
     {
-        if (true)
+        if (_isEffectsOn)
         {
             sellSound.Play();
         }
