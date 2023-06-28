@@ -1558,7 +1558,17 @@ MonoBehaviour:
   - {fileID: 2312544262117386651, guid: 3705aa9da68da654aa2a32f93c7ff0a0, type: 3}
   - {fileID: 1451859795546150171, guid: 86d07da2401676648bddfd70faf92c40, type: 3}
   - {fileID: 5433719797070793822, guid: 39e3c8683c945ae49b216b60f79d52d2, type: 3}
+  - {fileID: 8901027800863782488, guid: 4e997bf40cfac494186a88a4924a6e3e, type: 3}
+  - {fileID: 8901027800863782488, guid: f0166846e56266941afdea38f2b2b032, type: 3}
+  - {fileID: 8901027800863782488, guid: fb8df5b4bcbd00145b0b2142c4bd78ab, type: 3}
   - {fileID: 8901027800863782488, guid: d4e0ea187fab5874c92717b7f065aa57, type: 3}
+  - {fileID: 8901027800863782488, guid: 921931af28f967a4ea7186942217819f, type: 3}
+  - {fileID: 8901027800863782488, guid: 34d34a78c6aa10d46b6828123d5a0137, type: 3}
+  - {fileID: 8901027800863782488, guid: 1ce0f2585f634f14badd704a88d34330, type: 3}
+  decorations:
+  - {fileID: 2055102311959635369, guid: f681a54372d73d74785b9c9d4ac477e8, type: 3}
+  - {fileID: 2055102311959635369, guid: 7277dd75e907b27448ec1de08238d0bb, type: 3}
+  - {fileID: 2055102311959635369, guid: 9e7797bb065982d4497d030f065d6e2f, type: 3}
   cameraMoviment: {fileID: 1476210400}
   nexusPrefab: {fileID: 8073163712863166437, guid: 117eeb0ecc898dd49891fc1e4dd3502d,
     type: 3}
@@ -2067,7 +2077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447.9, y: -194.1}
+  m_AnchoredPosition: {x: -447.9, y: -218.40001}
   m_SizeDelta: {x: 214, y: 114}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1143159980
@@ -2145,7 +2155,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -310.6, y: -275.6}
+  m_AnchoredPosition: {x: -311.5, y: -130}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169822664
@@ -2161,7 +2171,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimap: {fileID: 263266316}
-  button: {fileID: 1169822662}
   showMinimapSprite: {fileID: 21300000, guid: 6baacc52f93df8b4ebbdc16233fa2f15, type: 3}
   hideMinimapSprite: {fileID: 21300000, guid: 142f5e21851f3094a81299376e250727, type: 3}
 --- !u!114 &1169822665
@@ -2851,7 +2860,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -447.8, y: -193.90002}
+  m_AnchoredPosition: {x: -447.8, y: -218.2}
   m_SizeDelta: {x: 255.6, y: 127.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1564120201
