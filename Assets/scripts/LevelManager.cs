@@ -17,6 +17,10 @@ public class LevelManager : Singleton<LevelManager>
     [SerializeField]
     private CameraMoviment cameraMoviment;
     private GameObject map;
+    private Vector3 worldMapPositionInitial;
+    public Vector3 WorldMapPositionInitial { get => worldMapPositionInitial; set => worldMapPositionInitial = value; }
+    private Vector3 maxTile;
+    public Vector3 MaxTile { get => maxTile; private set => maxTile = value; }
     private List<Vector2> spawnPositions;
     public List<Vector2> SpawnPositions { get => spawnPositions; private set => spawnPositions = value; }
     private Vector2 mapPosition;
@@ -37,15 +41,21 @@ public class LevelManager : Singleton<LevelManager>
     private RandomPointsGenerator randomPointsGenerator;
     public RandomPointsGenerator RandomPointsGenerator { get => randomPointsGenerator; set => randomPointsGenerator = value; }
 
+    private void Awake()
+    {
+        
+        CreateLevel();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        CreateLevel();
+        
     }
 
     private void CreateLevel()
     {
+        WorldMapPositionInitial = Vector3.zero;
         spawnPositions = new List<Vector2>();
         Tiles = new Dictionary<Point, Tile>();
         map = new GameObject("Map");
@@ -55,6 +65,7 @@ public class LevelManager : Singleton<LevelManager>
         MapPosition = new Vector2(mapX, mapY);
         Vector3 maxTile = Vector3.zero;
         Vector3 worldStartPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+        WorldMapPositionInitial= worldStartPosition;
         for (int y = 0; y < mapY; y++)
         {
             char[] newTiles = mapData[y].ToCharArray();
@@ -69,8 +80,10 @@ public class LevelManager : Singleton<LevelManager>
         SpawnDecorations(worldStartPosition, maxTile);
 
         RandomPointsGenerator = new RandomPointsGenerator(worldStartPosition, new Vector2(maxTile.x, maxTile.y), new Vector2Int(10, 10));
+        MaxTile = new Vector3(maxTile.x + TileSize, maxTile.y - TileSize);
+       
         //camera
-        cameraMoviment.SetLimits(new Vector3(maxTile.x + TileSize, maxTile.y - TileSize));
+        cameraMoviment.SetLimits(MaxTile);
 
         cameraMoviment.setCamaraPosition(new Vector3(worldPositionNexus.x, worldPositionNexus.y, -10));
     }

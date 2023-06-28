@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class CameraMoviment : MonoBehaviour
 {
+    public FixedJoystick joystick;
+    public GameObject player;
     [SerializeField]
     private float cameraSpeed;
     private float xMax, yMin;
     private Vector3 dragOrigin;
     private bool isDragging = false;
+    private bool isCameraLocked = false;
 
     private void Awake()
     {
@@ -22,32 +25,51 @@ public class CameraMoviment : MonoBehaviour
     }
     private void GetInput()
     {
-        // Handle mouse input for dragging the camera
-        if (Input.GetMouseButtonDown(0))
+        if (joystick.Horizontal != 0f || joystick.Vertical != 0f)
         {
-            isDragging = true;
-            dragOrigin = Input.mousePosition;
+            isCameraLocked = true;
         }
-        else if (Input.GetMouseButtonUp(0))
+        else
         {
-            isDragging = false;
+            isCameraLocked = false;
         }
 
-        // Handle camera movement while dragging
-        if (isDragging)
+        if (isCameraLocked)
         {
-            Vector3 currentMousePos = Input.mousePosition;
-            Vector3 dragDirection = currentMousePos - dragOrigin;
-            transform.Translate(-dragDirection * cameraSpeed * Time.deltaTime);
-            dragOrigin = currentMousePos;
+            // Camera follows the user
+            transform.position = new Vector3(
+                Mathf.Clamp(player.transform.position.x, 0, xMax),
+                Mathf.Clamp(player.transform.position.y, yMin, 0),
+                -10
+            );
         }
+        else
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDragging = true;
+                dragOrigin = Input.mousePosition;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                isDragging = false;
+            }
 
-        // Clamp camera position within limits
+            // Handle camera movement while dragging
+            if (isDragging)
+            {
+                Vector3 currentMousePos = Input.mousePosition;
+                Vector3 dragDirection = currentMousePos - dragOrigin;
+                transform.Translate(-dragDirection * cameraSpeed * Time.deltaTime);
+                dragOrigin = currentMousePos;
+            }
+        }
         transform.position = new Vector3(
-            Mathf.Clamp(transform.position.x, 0, xMax),
-            Mathf.Clamp(transform.position.y, yMin, 0),
-            -10
-        );
+          Mathf.Clamp(transform.position.x, 0, xMax),
+          Mathf.Clamp(transform.position.y, yMin, 0),
+          -10
+      );
+
     }
 
     public void SetLimits(Vector3 maxTile)
