@@ -830,8 +830,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -1.6000977, y: 23.899998}
-  m_SizeDelta: {x: 100, y: 125.15}
+  m_AnchoredPosition: {x: 18.9, y: 31.6}
+  m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &269629225
 MonoBehaviour:
@@ -2267,6 +2267,7 @@ GameObject:
   - component: {fileID: 1100320325}
   - component: {fileID: 1100320324}
   - component: {fileID: 1100320327}
+  - component: {fileID: 1100320328}
   m_Layer: 5
   m_Name: LighningTower
   m_TagString: Untagged
@@ -2350,7 +2351,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
 --- !u!114 &1100320325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2404,6 +2405,51 @@ MonoBehaviour:
   towerPrefab: {fileID: 560832536383594535, guid: 1bbea118ce1e11947812eb16654bcc94,
     type: 3}
   price: 20
+--- !u!114 &1100320328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100320322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1831688052}
+          m_TargetAssemblyTypeName: GameManage, Assembly-CSharp
+          m_MethodName: PickTower
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1100320327}
+            m_ObjectArgumentAssemblyTypeName: TowerPlacement, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1831688052}
+          m_TargetAssemblyTypeName: GameManage, Assembly-CSharp
+          m_MethodName: DropTower
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1100320327}
+            m_ObjectArgumentAssemblyTypeName: TowerPlacement, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1133497037
 GameObject:
   m_ObjectHideFlags: 0
@@ -4249,6 +4295,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1864116244517882938, guid: 58da3b5b3eec1a94b95f7aebfcc4a4d0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 1864116245339306344, guid: 58da3b5b3eec1a94b95f7aebfcc4a4d0,
         type: 3}
       propertyPath: m_Name
@@ -4298,6 +4349,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864116245339306345, guid: 58da3b5b3eec1a94b95f7aebfcc4a4d0,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1864116245339306345, guid: 58da3b5b3eec1a94b95f7aebfcc4a4d0,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1864116245339306345, guid: 58da3b5b3eec1a94b95f7aebfcc4a4d0,
         type: 3}

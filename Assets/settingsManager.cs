@@ -48,5 +48,6 @@ public class settingsManager : MonoBehaviour
     public void quit()
     {
         canvas.GetComponent<Canvas>().enabled = false;
+        Time.timeScale = 1;
     }
 }
