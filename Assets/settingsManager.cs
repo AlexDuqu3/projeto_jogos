@@ -13,7 +13,9 @@ public class settingsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (SoundManager.Instance._audioSource.mute == true)
+        
+
+        if (SoundManager.Instance && SoundManager.Instance._audioSource.mute == true)
         {
             barraSom.enabled = true;
         }
@@ -22,7 +24,7 @@ public class settingsManager : MonoBehaviour
             barraSom.enabled = false;
         }
 
-        if (SoundManager.Instance._isEffectsOn == false)
+        if (SoundManager.Instance && SoundManager.Instance._isEffectsOn == false)
         {
             barraFX.enabled = true;
         }
@@ -30,8 +32,12 @@ public class settingsManager : MonoBehaviour
         {
             barraFX.enabled = false;
         }
-        SoundManager.Instance.barraSom = barraSom;
-        SoundManager.Instance.barraFX = barraFX;
+
+        if (SoundManager.Instance) {
+            SoundManager.Instance.barraSom = barraSom;
+            SoundManager.Instance.barraFX = barraFX;
+        }
+  
     }
 
     public void openSettings() {
