@@ -14,6 +14,7 @@ public class GameManage : Singleton<GameManage>
     private Text healthText;
     private Text waveText;
     private Text timerText;
+    public GameOverScreen gameOverScreen;
     [SerializeField]
     private GameObject EnemySpawner;
     private bool gameOver = false;
@@ -212,7 +213,8 @@ public class GameManage : Singleton<GameManage>
         if (!gameOver)
         {
             gameOver = true;
-        }
+            gameOverScreen.Setup();
+        } 
     }
 
     public void StartWave()

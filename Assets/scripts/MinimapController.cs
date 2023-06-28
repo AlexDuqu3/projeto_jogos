@@ -10,7 +10,7 @@ public class MinimapController : MonoBehaviour
     [SerializeField] public Sprite showMinimapSprite; // Sprite para o botão quando o minimapa é mostrado
     [SerializeField] public Sprite hideMinimapSprite; // Sprite para o botão quando o minimapa é ocultado
    
-    private float hideOffset = 114f; // A quantidade de deslocamento para cima ao ocultar o minimapa
+    private float hideOffset = 180f; // A quantidade de deslocamento para cima ao ocultar o minimapa
     private bool isMinimapVisible = true;
     private Vector3 originalButtonPosition;
     private Image buttonImage; // Referência ao componente Image do botão
@@ -33,13 +33,14 @@ public class MinimapController : MonoBehaviour
         }
         else
         {
-            Vector3 newButtonPosition = originalButtonPosition + new Vector3(0f, hideOffset, 0f);
+            Vector3 newButtonPosition = originalButtonPosition;
+            newButtonPosition.y += hideOffset; // Desloca o botão para cima
 
-            minimap.SetActive(false);
             button.transform.position = newButtonPosition;
+            minimap.SetActive(false);
             buttonImage.sprite = showMinimapSprite; // Atualiza a imagem do botão para o sprite de mostrar minimapa
         }
 
-        Debug.Log("Minimap visibility toggled. New visibility: " + isMinimapVisible);
+        // Debug.Log("Minimap visibility toggled. New visibility: " + isMinimapVisible);
     }
 }
