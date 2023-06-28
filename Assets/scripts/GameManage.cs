@@ -99,6 +99,8 @@ public class GameManage : Singleton<GameManage>
         Wave = 0;
         waveDelay = 10f;
         waitingForNextWave = false;
+
+        ScoreSystem.Score = 0;
     }
 
     private void Update()
@@ -220,7 +222,7 @@ public class GameManage : Singleton<GameManage>
         if (!gameOver)
         {
             gameOver = true;
-            gameOverScreen.Setup();
+            gameOverScreen.Setup(ScoreSystem.Score, Wave);
         } 
     }
 
