@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetLimits();
     }
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
         worldStartPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
         attackArea = transform.GetChild(0).gameObject.GetComponent<AttackArea>();
 
-        SetLimits();
+   
     }
     // Update is called once per frame
     void Update()
@@ -122,6 +122,10 @@ public class Player : MonoBehaviour
 
     }
 
+    public void AttackButton()
+    {
+        Attack(attackDirection);
+    }
    
 
 }
