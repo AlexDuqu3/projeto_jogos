@@ -7,6 +7,8 @@ public class Hover : Singleton<Hover>
 {
     private SpriteRenderer spriteRenderer;
     // Start is called before the first frame update
+
+    private Tile tile;
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -24,11 +26,14 @@ public class Hover : Singleton<Hover>
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
             //get the tile that the mouse is on 
-            Tile tile = LevelManager.Instance.GetTileAtWorldPosition();
+            tile = LevelManager.Instance.GetTileAtWorldPosition();
             if(tile != null)
             {
                 spriteRenderer.sortingOrder =tile.GridPosition.Y;
             }
+        } else {
+            Debug.Log("sprite renderer is not enabled");
+            // tile.PlaceTower();
         }
     }
     public void Activate(Sprite sprite)
@@ -38,6 +43,6 @@ public class Hover : Singleton<Hover>
     }
     public void Deactivate()
     {
-        this.spriteRenderer.enabled= false;
+        spriteRenderer.enabled = false;
     }
 }
