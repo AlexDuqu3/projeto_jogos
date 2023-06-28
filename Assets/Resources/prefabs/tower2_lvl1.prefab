@@ -705,7 +705,8 @@ GameObject:
   - component: {fileID: 560832536383594533}
   - component: {fileID: 560832536383594532}
   - component: {fileID: 560832536383594538}
-  - component: {fileID: 560832536383594539}
+  - component: {fileID: 7958822360871978089}
+  - component: {fileID: 2481239108970735266}
   m_Layer: 6
   m_Name: tower2_lvl1
   m_TagString: Untagged
@@ -807,19 +808,53 @@ MonoBehaviour:
   sellSound: {fileID: 2559840419013335770}
   shotSound: {fileID: 2210148605053671888}
   level: 0
---- !u!65 &560832536383594539
-BoxCollider:
+--- !u!61 &7958822360871978089
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560832536383594535}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.43482754}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 2.5625}
+    pivot: {x: 0.5, y: 0.25}
+    oldSize: {x: 2, y: 6}
+    newSize: {x: 2, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2.0453303, z: 0.2}
-  m_Center: {x: 0, y: -0.47063243, z: 0}
+  m_Size: {x: 2, y: 2.1303444}
+  m_EdgeRadius: 0
+--- !u!50 &2481239108970735266
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560832536383594535}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &4376524815607760967
 GameObject:
   m_ObjectHideFlags: 0

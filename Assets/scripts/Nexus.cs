@@ -34,6 +34,11 @@ public class Nexus : MonoBehaviour
 
     public void LoseHealth(int damage)
     {
+        if (GameManage.Instance.Health - damage >=0)
+        {
+            SoundManager.Instance.PlayNexusDMGSound();
+
+        }
         GameManage.Instance.Health-= damage;
     }
 }

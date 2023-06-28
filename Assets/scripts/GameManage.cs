@@ -14,6 +14,7 @@ public class GameManage : Singleton<GameManage>
     private Text healthText;
     private Text waveText;
     private Text timerText;
+    public GameOverScreen gameOverScreen;
     [SerializeField]
     private GameObject EnemySpawner;
     private bool gameOver = false;
@@ -195,8 +196,15 @@ public class GameManage : Singleton<GameManage>
             TowerPlacementBtn = towerPlacement;
             Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
         }
-
     }
+
+    public void DropTower(TowerPlacement towerPlacement) {
+        
+        TowerPlacementBtn = towerPlacement;
+        Hover.Instance.Deactivate();
+        
+    }
+    
 
     public void BuyTower()
     {
@@ -212,7 +220,8 @@ public class GameManage : Singleton<GameManage>
         if (!gameOver)
         {
             gameOver = true;
-        }
+            gameOverScreen.Setup();
+        } 
     }
 
     public void StartWave()

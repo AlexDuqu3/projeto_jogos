@@ -119,8 +119,9 @@ public class Tile : MonoBehaviour
     }
 
 
-    private void PlaceTower()
+    public void PlaceTower()
     {
+        Debug.Log("PlaceTower: " + GameManage.Instance.TowerPlacementBtn);
         GameObject tower = Instantiate(GameManage.Instance.TowerPlacementBtn.TowerPrefab, WorldPosition, Quaternion.identity);
         // tower.AddComponent<Tower>();
         tower.GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
@@ -156,6 +157,34 @@ public class Tile : MonoBehaviour
 
     }
 
+    public Vector2 PlaceDecoration(GameObject decorationPrefab)
+    {
+        GameObject decoration = Instantiate(decorationPrefab, WorldPosition, Quaternion.identity);
+        if (decoration.transform.Find("Upper"))
+        {
+            decoration.transform.Find("Upper").GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
+            decoration.transform.Find("Lower").GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
+            decoration.transform.Find("Shadow").GetComponent<SpriteRenderer>().sortingOrder = GridPosition.Y;
+        }
+        decoration.transform.SetParent(transform);
+        Point[] adjacentPoints = GetAdjacentPoints(1);
+        for (int i = 0; i < adjacentPoints.Length; i++)
+        {
+            if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoints[i]))
+            {
+                if (IsTileWithinBounds())
+                {
+                    Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoints[i]];
+                    adjacentTile.IsDisable = true;
+                    adjacentTile.isNexusArea = true;
+                }
+
+            }
+        }
+        return WorldPosition;
+
+    }
+
     public void ColorTile(Color newColor)
     {
         if (spriteRenderer == null)
@@ -173,7 +202,7 @@ public class Tile : MonoBehaviour
         }
         foreach (Point adjacentPoint in adjacentPoints)
         {
-            // Verificar se o tile adjacente existe no dicionário
+            // Verificar se o tile adjacente existe no dicionï¿½rio
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
             {
                 Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];
@@ -226,7 +255,7 @@ public class Tile : MonoBehaviour
     {
         foreach (Point adjacentPoint in adjacentPoints)
         {
-            // Verificar se o tile adjacente existe no dicionário
+            // Verificar se o tile adjacente existe no dicionï¿½rio
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
             {
                 Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];
@@ -241,7 +270,7 @@ public class Tile : MonoBehaviour
     {
         foreach (Point adjacentPoint in adjacentPoints)
         {
-            // Verificar se o tile adjacente existe no dicionário
+            // Verificar se o tile adjacente existe no dicionï¿½rio
             if (LevelManager.Instance.Tiles.ContainsKey(adjacentPoint))
             {
                 Tile adjacentTile = LevelManager.Instance.Tiles[adjacentPoint];
