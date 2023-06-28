@@ -31,9 +31,12 @@ public class Hover : Singleton<Hover>
             {
                 spriteRenderer.sortingOrder =tile.GridPosition.Y;
             }
-        } else {
-            Debug.Log("sprite renderer is not enabled");
-            // tile.PlaceTower();
+        }
+
+        if(!spriteRenderer.enabled && GameManage.Instance.TowerPlacementBtn != null)
+        {
+            tile.PlaceTower();
+            Deactivate();
         }
     }
     public void Activate(Sprite sprite)
