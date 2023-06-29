@@ -21,6 +21,7 @@ public class AttackArea : MonoBehaviour
     {
         player=GameObject.FindGameObjectWithTag("Player");
         attackCollider = GetComponent<Collider2D>();
+        attackCollider.enabled = false;
         attackOffset = transform.position;
     }
 
