@@ -16,8 +16,12 @@ public class HighScoreUI : MonoBehaviour
 
     public void ShowPanel()
     {
+        Debug.Log("Show Panel");
+
         panel.GetComponent<Canvas>().enabled=true;
-        //Debug.Log(HighScoreHandler.Instance.highScorelist.Count);
+        Debug.Log("HighScoreHandler.Instance.highScorelist.Count");
+
+        Debug.Log(HighScoreHandler.Instance.highScorelist.Count);
         UpdateUI(HighScoreHandler.Instance.highScorelist);
     }
 
@@ -31,7 +35,7 @@ public class HighScoreUI : MonoBehaviour
     public void UpdateUI(List<HighScoreElement> list)
     {
 
-        //Debug.Log(list.Count.ToString());
+        Debug.Log(list.Count.ToString());
         //Debug.Log(list[0].date);
 
         for (int i = 0; i < list.Count; i++)
