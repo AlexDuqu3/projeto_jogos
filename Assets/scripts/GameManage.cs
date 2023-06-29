@@ -14,10 +14,12 @@ public class GameManage : Singleton<GameManage>
     private Text healthText;
     private Text waveText;
     private Text timerText;
+    private Button nextWaveBtn;
     public GameOverScreen gameOverScreen;
     [SerializeField]
     private GameObject EnemySpawner;
     private bool gameOver = false;
+    private bool forceNextWave = false;
     public ObjectPool Pool { get; set; }
     private int towersAdjacentRadius;
     private float waveDelay;
@@ -85,6 +87,7 @@ public class GameManage : Singleton<GameManage>
     {
         timerText = GameObject.Find("Stats/TimerText").GetComponent<Text>();
         waveText = GameObject.Find("Stats/WaveText").GetComponent<Text>();
+        nextWaveBtn = GameObject.Find("NextWaveBtn").GetComponent<Button>();
         currencyText = GameObject.Find("CurrencyText").GetComponent<Text>();
         healthText = GameObject.Find("HealthText").GetComponent<Text>();
         Pool = GetComponent<ObjectPool>();
@@ -108,19 +111,25 @@ public class GameManage : Singleton<GameManage>
         {
             // Iniciar a contagem regressiva para a próxima wave
             waitingForNextWave = true;
+            timerText.gameObject.SetActive(waitingForNextWave);
             waveTimer = waveDelay;
         }
 
         if (waitingForNextWave)
         {
+            nextWaveBtn.gameObject.SetActive(!forceNextWave);
+            nextWaveBtn.interactable = !forceNextWave;
             WaveTimer = waveTimer;
             waveTimer -= Time.deltaTime;
 
-            if (waveTimer <= 0f)
+            if (waveTimer <= 0f || forceNextWave)
             {
+                nextWaveBtn.gameObject.SetActive(forceNextWave);
                 StartWave();
                 waveTimer = waveDelay;
                 waitingForNextWave = false;
+                timerText.gameObject.SetActive(waitingForNextWave);
+                forceNextWave = false;
             }
         }
     }
@@ -223,8 +232,12 @@ public class GameManage : Singleton<GameManage>
             gameOverScreen.Setup();
         } 
     }
-
-    public void StartWave()
+    public void NextWaveButtonClick()
+    {
+        nextWaveBtn.interactable = false;
+        forceNextWave = true;
+    }
+    private void StartWave()
     {
         StartCoroutine(SpawnWave());
     }
