@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,27 +27,38 @@ public class HighScoreHandler : MonoBehaviour
     private void Start()
     {
         LoadHighScores();
+        Debug.Log("highScorelist.Count");
+
+        Debug.Log(highScorelist.Count);
 
     }
 
     private void LoadHighScores()
     {
-        AddHighscoreIfPossible(new HighScoreElement("1", 1));
+        /*AddHighscoreIfPossible(new HighScoreElement("1", 1));
         AddHighscoreIfPossible(new HighScoreElement("2", 2));
         AddHighscoreIfPossible(new HighScoreElement("3", 3));
         AddHighscoreIfPossible(new HighScoreElement("4", 4));
         AddHighscoreIfPossible(new HighScoreElement("5", 5));
-
+        */
 
     }
 
-    public void AddHighscoreIfPossible(HighScoreElement element)
+    public void AddScore(int score)
+    {
+        DateTime now = DateTime.Now;
+        HighScoreElement element = new HighScoreElement($"{now.Day}/{now.Month} {now.Hour}:{now.Minute}h",score);
+        AddHighscoreIfPossible(element);
+    }
+
+    private void AddHighscoreIfPossible(HighScoreElement element)
     {
         for (int i = 0;i< maxCount;i++)
         {
             if (i >= highScorelist.Count || element.score > highScorelist[i].score)
             {
                 highScorelist.Insert(i, element);
+                Debug.Log("adicionou score");
 
                 while (highScorelist.Count > maxCount)
                 {
