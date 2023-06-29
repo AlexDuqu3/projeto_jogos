@@ -132,7 +132,7 @@ public class GameManage : Singleton<GameManage>
 
             if (waveTimer <= 0f || forceNextWave)
             {
-                nextWaveBtn.gameObject.SetActive(forceNextWave);
+                nextWaveBtn.gameObject.SetActive(!forceNextWave);
                 StartWave();
                 waveTimer = waveDelay;
                 waitingForNextWave = false;

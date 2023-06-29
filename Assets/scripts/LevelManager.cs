@@ -43,7 +43,6 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Awake()
     {
-        
         CreateLevel();
     }
 
@@ -65,13 +64,20 @@ public class LevelManager : Singleton<LevelManager>
         MapPosition = new Vector2(mapX, mapY);
         Vector3 maxTile = Vector3.zero;
         Vector3 worldStartPosition = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height));
+        Debug.Log(worldStartPosition.x + " -x-y- "+ worldStartPosition.y);
         WorldMapPositionInitial= worldStartPosition;
         for (int y = 0; y < mapY; y++)
         {
             char[] newTiles = mapData[y].ToCharArray();
+            Debug.Log(newTiles);
             for (int x = 0; x < mapX; x++)
             {
-                PlaceTile(newTiles[x].ToString(), x, y, worldStartPosition);
+                //Debug.Log( "tile- " + newTiles[x] + " xvalue: " + x);
+                //Debug.Log("tile- " + newTiles[x].ToString().Replace("\\", "OI") + " xvalue: " + x);
+                if (newTiles[x] != '\n' && newTiles[x] != '\r' && newTiles[x].ToString() != "\r\n")
+                {
+                    PlaceTile(newTiles[x].ToString(), x, y, worldStartPosition);
+                }                    
             }
         }
         Vector2 worldPositionNexus = SpawnNexus();
@@ -99,7 +105,8 @@ public class LevelManager : Singleton<LevelManager>
     private string[] ReadLevelText()
     {
         TextAsset data = Resources.Load("Level") as TextAsset;
-        string dataString = data.text.Replace(Environment.NewLine, string.Empty);
+        string dataString = data.text.Replace("\n", string.Empty);
+        dataString = dataString.Replace("\r", string.Empty);
         return dataString.Split('-');
     }
 
