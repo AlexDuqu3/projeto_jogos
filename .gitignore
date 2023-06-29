@@ -2,7 +2,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=unity
 
 #savefile
-scores.json
+score.json
 
 ### Unity ###
 # This .gitignore file should be placed at the root of your Unity project directory
