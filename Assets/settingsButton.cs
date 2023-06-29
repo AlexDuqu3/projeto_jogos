@@ -9,6 +9,6 @@ public class settingsButton : MonoBehaviour
     public void openSettings() {
         Debug.Log(canvas);
         canvas.GetComponent<Canvas>().enabled = true;
-    
+        Time.timeScale = 0;
     }
 }

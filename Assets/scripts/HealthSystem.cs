@@ -47,6 +47,7 @@ public class HealthSystem
     public void Die()
     {
         //OnDead?.Invoke(this, EventArgs.Empty); -> animacao de quando morre i guess??
+        
     }
 
     public bool IsDead()

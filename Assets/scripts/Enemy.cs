@@ -18,6 +18,13 @@ public class Enemy : MonoBehaviour
     private Transform pfHealthBar;
     private EnemySpawner parentSpawner;
 
+    [SerializeField]
+    public int maxLife;
+    [SerializeField]
+    public int scoreValue;
+    [SerializeField]
+    public int currencyValue;
+
     public EnemySpawner ParentSpawner { get => parentSpawner; set => parentSpawner = value; }
 
     // Start is called before the first frame update
@@ -35,7 +42,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         enemyList.Add(this);
-        this.healthSystem = new HealthSystem(110);
+        this.healthSystem = new HealthSystem(this.maxLife);
         GameObject HealthBarGO = transform.Find("HealthBarGO").gameObject;
         this.healthBar = HealthBarGO.GetComponent<HealthBar>();
         this.healthBar.Setup(this.healthSystem);
@@ -53,6 +60,8 @@ public class Enemy : MonoBehaviour
                 Enemy.enemyList.Remove(this);
                 this.healthBar.destroyThis();
                 parentSpawner.RemoveEnemy(this);
+                ScoreSystem.Score += this.scoreValue;
+                GameManage.Instance.Currency += this.currencyValue;
                 Destroy(gameObject);
                 //Destroy(this);
             }
@@ -156,6 +165,6 @@ public class Enemy : MonoBehaviour
         if (remove) {
             parentSpawner.RemoveEnemy(this);
             Destroy(gameObject);
-                };
+        };
     }
 }

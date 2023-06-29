@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverScreen : MonoBehaviour
 {
-    public void Setup() {
+    public Text scoreText;
+    public void Setup(int score, int waveNumber) {
         gameObject.SetActive(true);
+        scoreText.text = "<color=yellow>Points</color>: " + score.ToString() + " | " + "<color=white>Wave</color>: " + waveNumber.ToString();
     }
 
     public void RestartButton()

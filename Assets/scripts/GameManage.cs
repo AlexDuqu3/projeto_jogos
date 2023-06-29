@@ -93,12 +93,16 @@ public class GameManage : Singleton<GameManage>
 
     private void Start()
     {
+        Time.timeScale = 1;
+        
         Health = 10;
-        Currency = 50000;
+        Currency = 400;
         TowersAdjacentRadius = 3; //3x3
         Wave = 0;
         waveDelay = 10f;
         waitingForNextWave = false;
+
+        ScoreSystem.Score = 0;
     }
 
     private void Update()
@@ -196,8 +200,15 @@ public class GameManage : Singleton<GameManage>
             TowerPlacementBtn = towerPlacement;
             Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
         }
-
     }
+
+    public void DropTower(TowerPlacement towerPlacement) {
+        
+        TowerPlacementBtn = towerPlacement;
+        Hover.Instance.Deactivate();
+        
+    }
+    
 
     public void BuyTower()
     {
@@ -213,7 +224,8 @@ public class GameManage : Singleton<GameManage>
         if (!gameOver)
         {
             gameOver = true;
-            gameOverScreen.Setup();
+            Time.timeScale = 0;
+            gameOverScreen.Setup(ScoreSystem.Score, Wave);
         } 
     }
 
