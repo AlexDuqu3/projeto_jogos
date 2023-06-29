@@ -43,6 +43,15 @@ public class CameraMoviment : MonoBehaviour
                 -10
             );
         }
+        else if (GameManage.Instance.TowerPlacementBtn != null)
+        {
+            // Camera is locked while placing a tower
+            transform.position = new Vector3(
+                               Mathf.Clamp(transform.position.x, 0, xMax),
+                                              Mathf.Clamp(transform.position.y, yMin, 0),
+                                                             -10
+                                                                        );
+        }
         else
         {
             if (Input.GetMouseButtonDown(0))
@@ -74,7 +83,7 @@ public class CameraMoviment : MonoBehaviour
 
     public void SetLimits(Vector3 maxTile)
     {
-        Vector3 wp=Camera.main.ViewportToWorldPoint(new Vector3(1,0));
+        Vector3 wp = Camera.main.ViewportToWorldPoint(new Vector3(1, 0));
         xMax = maxTile.x - wp.x;
         yMin = maxTile.y - wp.y;
 

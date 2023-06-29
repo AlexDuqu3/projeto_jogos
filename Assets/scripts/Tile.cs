@@ -91,6 +91,10 @@ public class Tile : MonoBehaviour
     }
     private void OnMouseOver()
     {
+        if (!Hover.Instance.SpriteRenderer.enabled)
+        {
+            GameManage.Instance.TowerPlacementBtn = null;
+        }
         if (!EventSystem.current.IsPointerOverGameObject() && GameManage.Instance.TowerPlacementBtn != null)
         {
             Point[] adjacentPoints = GetAdjacentPoints(GameManage.Instance.TowersAdjacentRadius); //3x3
@@ -121,6 +125,11 @@ public class Tile : MonoBehaviour
 
     public void PlaceTower()
     {
+        if(!(IsEmpty && !IsDisable))
+        {
+            GameManage.Instance.TowerPlacementBtn=null;
+            return;
+        }
         Debug.Log("PlaceTower: " + GameManage.Instance.TowerPlacementBtn);
         GameObject tower = Instantiate(GameManage.Instance.TowerPlacementBtn.TowerPrefab, WorldPosition, Quaternion.identity);
         // tower.AddComponent<Tower>();

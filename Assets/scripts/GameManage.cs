@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class GameManage : Singleton<GameManage>
 {
-    public TowerPlacement TowerPlacementBtn { get; private set; }
+    public TowerPlacement TowerPlacementBtn { get; set; }
     public Tower selectedTower { get; set; }
     private Text currencyText;
     private Text healthText;
@@ -23,6 +23,7 @@ public class GameManage : Singleton<GameManage>
     public ObjectPool Pool { get; set; }
     private int towersAdjacentRadius;
     private float waveDelay;
+    private bool isDraggingTower;
     private bool waitingForNextWave;
     public int TowersAdjacentRadius
     {
@@ -83,6 +84,9 @@ public class GameManage : Singleton<GameManage>
             timerText.text = formattedTime.ToString();
         }
     }
+
+    public bool IsDraggingTower { get => isDraggingTower; private set => isDraggingTower = value; }
+
     private void Awake()
     {
         timerText = GameObject.Find("Stats/TimerText").GetComponent<Text>();
@@ -104,7 +108,7 @@ public class GameManage : Singleton<GameManage>
         Wave = 0;
         waveDelay = 10f;
         waitingForNextWave = false;
-
+        IsDraggingTower= false;
         ScoreSystem.Score = 0;
     }
 
@@ -206,6 +210,7 @@ public class GameManage : Singleton<GameManage>
     {
         if (Currency >= towerPlacement.Price)
         {
+            IsDraggingTower= true;
             TowerPlacementBtn = towerPlacement;
             Hover.Instance.Activate(towerPlacement.TowerPrefab.GetComponent<SpriteRenderer>().sprite);
         }
@@ -213,9 +218,8 @@ public class GameManage : Singleton<GameManage>
 
     public void DropTower(TowerPlacement towerPlacement) {
         
-        TowerPlacementBtn = towerPlacement;
         Hover.Instance.Deactivate();
-        
+        IsDraggingTower= false;
     }
     
 
