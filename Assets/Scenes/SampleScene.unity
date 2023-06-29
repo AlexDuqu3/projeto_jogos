@@ -1673,6 +1673,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4718917683293706677, guid: 80d6fcc59800bcf44973826b67394674,
+        type: 3}
+      propertyPath: maxLife
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -4718917683293706677, guid: 80d6fcc59800bcf44973826b67394674,
+        type: 3}
+      propertyPath: scoreValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4560297903270807905, guid: 80d6fcc59800bcf44973826b67394674,
         type: 3}
       propertyPath: m_RootOrder
