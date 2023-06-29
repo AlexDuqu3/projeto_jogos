@@ -57,7 +57,7 @@ public class GameManage : Singleton<GameManage>
                 health = 0;
                 GameOver();
             }
-            healthText.text = health.ToString() + "<color=red>♥</color>";
+            healthText.text = health.ToString() + "<color=red>\u2764</color>";
 
         }
     }
