@@ -144,12 +144,23 @@ public class Tower : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (GameManage.Instance.selectedTower == this)
+                {
+                    Deselect();
+                    GameManage.Instance.selectedTower = null;
+                    return;
+                }
                 if (GameManage.Instance.selectedTower != null)
                 {
                     GameManage.Instance.DeselectTower(this);
                     return;
                 }
-                GameManage.Instance.SelectTower(this);
+                else
+                {
+                    GameManage.Instance.SelectTower(this);
+                    return;
+                }
+                
             }
         }
     }
@@ -170,6 +181,7 @@ public class Tower : MonoBehaviour
     public void Deselect()
     {
         rangeCircle.SetActive(false);
+        upgradePanel.SetActive(false);
     }
 
     private void drawCircle()
