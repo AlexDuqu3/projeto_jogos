@@ -44,7 +44,7 @@ public class HighScoreHandler : MonoBehaviour
     }
     public void SaveHighScore()
     {
-        FileHandler.SaveToJSON<HighScoreElement> (highScorelist, filename);
+        FileHandler.SaveToJSON<HighScoreElement>(highScorelist, filename);
     }
 
 

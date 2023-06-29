@@ -52,8 +52,18 @@ public static class FileHandler
 
     private static string GetPath(string filename)
     {
-        //return Application.persistentDataPath + "/" + filename;
-        return "./" + filename;
+        string filePath = Path.Combine(Application.persistentDataPath, "data");
+        filePath = Path.Combine(filePath, filename);
+
+
+        //Create Directory if it does not exist
+        if (!Directory.Exists(Path.GetDirectoryName(filePath)))
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+        }
+
+        return filePath;
+        //return "./" + filename;
     }
 
     private static void WriteFile(string path, string content)
