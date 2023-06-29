@@ -12,5 +12,9 @@ EditorBuildSettings:
     path: Assets/test.unity
     guid: 5370f0c02df56244a9b111169521c3e9
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b6aea25354caa344590446e3f2fa8a44,
+      type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000,
+      guid: 5243765a14d8ad641a50790d05f7a962, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000,
       guid: 96a8cbdcd1db44e45b7023ab02121c48, type: 2}

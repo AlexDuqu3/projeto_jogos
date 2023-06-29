@@ -9,9 +9,12 @@ public class Hover : Singleton<Hover>
     // Start is called before the first frame update
 
     private Tile tile;
+
+    public SpriteRenderer SpriteRenderer { get => spriteRenderer; private set => spriteRenderer = value; }
+
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class Hover : Singleton<Hover>
     }
     private void FollowMouse()
     {
-        if (spriteRenderer.enabled)
+        if (SpriteRenderer.enabled)
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = new Vector3(transform.position.x, transform.position.y, 0);
@@ -29,23 +32,27 @@ public class Hover : Singleton<Hover>
             tile = LevelManager.Instance.GetTileAtWorldPosition();
             if(tile != null)
             {
-                spriteRenderer.sortingOrder =tile.GridPosition.Y;
+                SpriteRenderer.sortingOrder =tile.GridPosition.Y;
             }
         }
 
-        if(!spriteRenderer.enabled && GameManage.Instance.TowerPlacementBtn != null)
+        if(!SpriteRenderer.enabled && GameManage.Instance.TowerPlacementBtn != null)
         {
+            if(tile != null)
+            {
             tile.PlaceTower();
+            }
             Deactivate();
+
         }
     }
     public void Activate(Sprite sprite)
     {
-        spriteRenderer.sprite = sprite;
-        spriteRenderer.enabled = true;
+        SpriteRenderer.sprite = sprite;
+        SpriteRenderer.enabled = true;
     }
     public void Deactivate()
     {
-        spriteRenderer.enabled = false;
+        SpriteRenderer.enabled = false;
     }
 }
