@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HighScoreHandler : MonoBehaviour
@@ -9,6 +10,7 @@ public class HighScoreHandler : MonoBehaviour
 
     public List<HighScoreElement> highScorelist = new List<HighScoreElement>();
     [SerializeField] int maxCount = 3;
+    [SerializeField] string filename;
 
     private void Awake()
     {
@@ -35,14 +37,18 @@ public class HighScoreHandler : MonoBehaviour
 
     private void LoadHighScores()
     {
-        /*AddHighscoreIfPossible(new HighScoreElement("1", 1));
-        AddHighscoreIfPossible(new HighScoreElement("2", 2));
-        AddHighscoreIfPossible(new HighScoreElement("3", 3));
-        AddHighscoreIfPossible(new HighScoreElement("4", 4));
-        AddHighscoreIfPossible(new HighScoreElement("5", 5));
-        */
-
+        highScorelist = FileHandler.ReadListFromJSON<HighScoreElement>(filename);
+        while (highScorelist.Count > maxCount)
+        {
+            highScorelist.RemoveAt(maxCount);
+        }
     }
+    public void SaveHighScore()
+    {
+        FileHandler.SaveToJSON<HighScoreElement> (highScorelist, filename);
+    }
+
+
 
     public void AddScore(int score)
     {

@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     }
 
     public void QuiGame() {
+        HighScoreHandler.Instance.SaveHighScore();
         Application.Quit();
     }
 
