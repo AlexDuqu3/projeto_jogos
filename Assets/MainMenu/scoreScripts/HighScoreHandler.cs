@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Android;
 
 public class HighScoreHandler : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class HighScoreHandler : MonoBehaviour
     public List<HighScoreElement> highScorelist = new List<HighScoreElement>();
     [SerializeField] int maxCount = 3;
     [SerializeField] string filename;
+
+    private const string WritePermission = "android.permission.WRITE_EXTERNAL_STORAGE";
 
     private void Awake()
     {
@@ -28,10 +31,11 @@ public class HighScoreHandler : MonoBehaviour
 
     private void Start()
     {
+        if (!Permission.HasUserAuthorizedPermission(WritePermission))
+        {
+            Permission.RequestUserPermission(WritePermission);
+        }
         LoadHighScores();
-        Debug.Log("highScorelist.Count");
-
-        Debug.Log(highScorelist.Count);
 
     }
 
