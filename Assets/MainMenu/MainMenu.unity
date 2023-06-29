@@ -1510,7 +1510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScorelist: []
   maxCount: 5
-  filename: 
 --- !u!1001 &591964495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2109,7 +2108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -53.66, y: -2.7}
+  m_AnchoredPosition: {x: -53.659912, y: -2.7}
   m_SizeDelta: {x: 107.32, y: 209.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &846972777
@@ -4227,7 +4226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -1.6, y: -34.717}
+  m_AnchoredPosition: {x: -1.6, y: -34.71704}
   m_SizeDelta: {x: 315.7, y: 69.433}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1480358792

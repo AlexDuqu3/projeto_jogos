@@ -43,7 +43,7 @@ public class GameManage : Singleton<GameManage>
         set
         {
             currency = value;
-            currencyText.text = value.ToString() + "<color=lime>$</color>";
+            currencyText.text = "<color=lime>$</color> " + value.ToString();
         }
     }
     private int health;
@@ -57,7 +57,7 @@ public class GameManage : Singleton<GameManage>
                 health = 0;
                 GameOver();
             }
-            healthText.text = health.ToString() + "<color=red>\u2764</color>";
+            healthText.text = health.ToString();
 
         }
     }
