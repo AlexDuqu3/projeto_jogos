@@ -93,6 +93,8 @@ public class GameManage : Singleton<GameManage>
 
     private void Start()
     {
+        Time.timeScale = 1;
+        
         Health = 10;
         Currency = 400;
         TowersAdjacentRadius = 3; //3x3
@@ -222,6 +224,7 @@ public class GameManage : Singleton<GameManage>
         if (!gameOver)
         {
             gameOver = true;
+            Time.timeScale = 0;
             gameOverScreen.Setup(ScoreSystem.Score, Wave);
         } 
     }
