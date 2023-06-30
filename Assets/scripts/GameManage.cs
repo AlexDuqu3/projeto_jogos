@@ -119,24 +119,24 @@ public class GameManage : Singleton<GameManage>
         {
             // Iniciar a contagem regressiva para a próxima wave
             waitingForNextWave = true;
-            timerText.gameObject.SetActive(waitingForNextWave);
+            timerText.gameObject.SetActive(true);
             waveTimer = waveDelay;
         }
 
         if (waitingForNextWave)
         {
-            nextWaveBtn.gameObject.SetActive(!forceNextWave);
-            nextWaveBtn.interactable = !forceNextWave;
+            nextWaveBtn.gameObject.SetActive(true);
+            nextWaveBtn.interactable = true;
             WaveTimer = waveTimer;
             waveTimer -= Time.deltaTime;
 
             if (waveTimer <= 0f || forceNextWave)
             {
-                nextWaveBtn.gameObject.SetActive(!forceNextWave);
+                nextWaveBtn.gameObject.SetActive(false);
                 StartWave();
                 waveTimer = waveDelay;
                 waitingForNextWave = false;
-                timerText.gameObject.SetActive(waitingForNextWave);
+                timerText.gameObject.SetActive(false);
                 forceNextWave = false;
             }
         }
@@ -244,6 +244,7 @@ public class GameManage : Singleton<GameManage>
     public void NextWaveButtonClick()
     {
         nextWaveBtn.interactable = false;
+        nextWaveBtn.gameObject.SetActive(false);
         forceNextWave = true;
     }
     private void StartWave()
