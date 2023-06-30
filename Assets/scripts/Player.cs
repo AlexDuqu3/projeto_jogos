@@ -119,6 +119,7 @@ public class Player : MonoBehaviour
         attacking = true;
         attackArea.Attack(direction);
         //attackArea.StopAttack();
+        SoundManager.Instance.PlayAttackSound();
 
     }
 

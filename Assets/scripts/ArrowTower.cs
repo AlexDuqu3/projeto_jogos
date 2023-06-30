@@ -12,17 +12,17 @@ public class ArrowTower : Tower
     {
         towerUpgrades = new TowerUpgrade[]
        {
-            new TowerUpgrade(2,2,2,Resources.Load<GameObject>("prefabs/tower_lvl2")),
-            new TowerUpgrade(3,3,3,Resources.Load<GameObject>("prefabs/tower_lvl3")),
+            new TowerUpgrade(50,50,9,Resources.Load<GameObject>("prefabs/tower_lvl2")),
+            new TowerUpgrade(50,75,12,Resources.Load<GameObject>("prefabs/tower_lvl3")),
        };
     }
 
 
     public override void Awake()
     {
-        range = 0.5f;
+        range = 4f;
         shootTimerMax = 0.5f;
-        damage = 1;
+        damage = 25;
         //panelUpgradeButton = _upgrade;
         //panelSellButton = _sell;
         base.Awake();
