@@ -208,9 +208,9 @@ public class Tower : MonoBehaviour
         Debug.Log("Dentro do Upgrade");
         SoundManager.Instance.PlayUpgradeSound();
         GameManage.Instance.Currency -= NextUpgrade.Price;
-        Price += NextUpgrade.Price;
-        this.damage += NextUpgrade.Damage;
-        this.range += NextUpgrade.Range;
+        Price = NextUpgrade.Price;
+        this.damage = NextUpgrade.Damage;
+        this.range = NextUpgrade.Range;
         GameObject newTowerObject=Instantiate(NextUpgrade.towerVisual, transform.position, transform.rotation, transform.parent);
         this.level += 1;
         Tower newTowerClass= newTowerObject.GetComponent<Tower>();

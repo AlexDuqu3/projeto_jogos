@@ -181,7 +181,7 @@ public class GameManage : Singleton<GameManage>
     {
         if (selectedTower != null)
         {
-            Currency += selectedTower.Price / 2;
+            Currency += selectedTower.Price;
             Tile selectedTile = selectedTower.GetComponentInParent<Tile>();
             selectedTile.IsEmpty = true; // clear the tile
             selectedTile.NumberOftowers--; // decrement the number of towers "using" the tile (adjacentS)
