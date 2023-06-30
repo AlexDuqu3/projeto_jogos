@@ -13,7 +13,7 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] public AudioSource _audioSource, _effectsSource;
 
-    [SerializeField] private AudioSource upgradeSound, sellSound, nexusDMG;
+    [SerializeField] private AudioSource upgradeSound, sellSound, nexusDMG, attack1, attack2, attack3;
 
     public bool _isEffectsOn = true;
 
@@ -63,6 +63,21 @@ public class SoundManager : MonoBehaviour
         {
             upgradeSound.Play();
         } 
+    }
+
+    public void PlayAttackSound()
+    {
+        if (_isEffectsOn)
+        {
+            int number = Random.Range(1, 3);
+            switch (number)
+            {
+                case 1: attack1.Play(); break;
+                case 2: attack2.Play(); break;
+                case 3: attack3.Play(); break;
+                default: break;
+            }
+        }
     }
 
     public void PlayNexusDMGSound()
