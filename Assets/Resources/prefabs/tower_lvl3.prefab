@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 2569701584372943748}
   - component: {fileID: 2569701584372943749}
   - component: {fileID: 2569701584372943746}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -232,6 +232,7 @@ GameObject:
   - component: {fileID: 8117360152171284738}
   - component: {fileID: 2873855662296241805}
   - component: {fileID: 7835617956228823342}
+  - component: {fileID: 5979347983640112753}
   m_Layer: 6
   m_Name: tower_lvl3
   m_TagString: Untagged
@@ -298,8 +299,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 864879407
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -1658258516, guid: 907371c5ac9d204458968c2b24da82d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -345,7 +346,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.12110156}
+  m_Offset: {x: 0, y: 0.11990011}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.25}
@@ -356,7 +357,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2.2422023}
+  m_Size: {x: 2, y: 2.2397995}
   m_EdgeRadius: 0
 --- !u!50 &7835617956228823342
 Rigidbody2D:
@@ -379,6 +380,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!61 &5979347983640112753
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2569701584525252472}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.8086486}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.25}
+    oldSize: {x: 2, y: 4}
+    newSize: {x: 2, y: 4}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3.6172962}
+  m_EdgeRadius: 0
 --- !u!1 &2569701584764828555
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +417,7 @@ GameObject:
   - component: {fileID: 2569701584764828556}
   - component: {fileID: 2569701584764828557}
   - component: {fileID: 2569701584764828554}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -451,8 +478,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayerID: -1736001833
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 1684927807, guid: c1b6e63c14bd3f943bf8e1ad430a1304, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -677,7 +704,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1869315837
+  m_SortingLayerID: -1736001833
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &6078874184738242720
@@ -756,7 +783,7 @@ GameObject:
   - component: {fileID: 1178405342284189607}
   - component: {fileID: 6987591081220756555}
   - component: {fileID: 4831267302614535026}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

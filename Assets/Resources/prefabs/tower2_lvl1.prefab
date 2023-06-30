@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 560832534578826767}
   - component: {fileID: 560832534578826766}
   - component: {fileID: 560832534578826761}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: upgrade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,8 +412,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1869315837
-  m_SortingLayer: 1
+  m_SortingLayerID: -1736001833
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 1444365897, guid: 36be94d6a50c4fd48a31d3382da356fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 560832535732898380}
   - component: {fileID: 560832535732898383}
   - component: {fileID: 560832535732898382}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: upgradePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -506,7 +506,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: -1869315837
+  m_SortingLayerID: -1736001833
   m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &560832535732898380
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 560832535862934174}
   - component: {fileID: 560832535862934169}
   - component: {fileID: 560832535862934168}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: sell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,6 +707,7 @@ GameObject:
   - component: {fileID: 560832536383594538}
   - component: {fileID: 7958822360871978089}
   - component: {fileID: 2481239108970735266}
+  - component: {fileID: 8265962481808185835}
   m_Layer: 6
   m_Name: tower2_lvl1
   m_TagString: Untagged
@@ -774,8 +775,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 864879407
+  m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -2113490104, guid: cafb983113976e946a947639635e5a34, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -855,6 +856,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!61 &8265962481808185835
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560832536383594535}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.14433372}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 2.5625}
+    pivot: {x: 0.5, y: 0.25}
+    oldSize: {x: 2, y: 6}
+    newSize: {x: 2, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2, y: 3.288667}
+  m_EdgeRadius: 0
 --- !u!1 &4376524815607760967
 GameObject:
   m_ObjectHideFlags: 0
