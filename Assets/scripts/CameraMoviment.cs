@@ -16,7 +16,7 @@ public class CameraMoviment : MonoBehaviour
 
     private void Awake()
     {
-        cameraSpeed = 5f;
+        cameraSpeed = 1f;
     }
 
     private void Update()

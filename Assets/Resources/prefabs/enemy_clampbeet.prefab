@@ -121,7 +121,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c92173c9b192f64fbb67d3aa4f739fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 50
+  maxLife: 100
+  velocity: 1
+  damage: 1
   scoreValue: 10
   currencyValue: 10
 --- !u!58 &2048946328279968698

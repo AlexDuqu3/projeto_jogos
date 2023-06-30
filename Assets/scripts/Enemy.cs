@@ -20,6 +20,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     public int maxLife;
     [SerializeField]
+    public float velocity;
+    [SerializeField]
+    public int damage;
+    [SerializeField]
     public int scoreValue;
     [SerializeField]
     public int currencyValue;
@@ -127,7 +131,7 @@ public class Enemy : MonoBehaviour
             // Aplicar o novo vetor de direção com o desvio da torre
             direction = (direction + obstacleAvoidanceDirection).normalized;
         }
-        transform.position += direction * Time.deltaTime * 2f;
+        transform.position += direction * Time.deltaTime * 2f * this.velocity;
         Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, -direction);
         transform.rotation = targetRotation;
     }
@@ -146,7 +150,7 @@ public class Enemy : MonoBehaviour
             Nexus nexus = collision.GetComponent<Nexus>();
             if (nexus != null)
             {
-                nexus.LoseHealth(1);
+                nexus.LoseHealth(this.damage);
                 StartCoroutine(Scale(transform.localScale, new Vector3(0.1f,0.1f),true));
                 //Destroy(gameObject);
             }

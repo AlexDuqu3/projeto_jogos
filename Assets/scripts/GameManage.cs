@@ -43,7 +43,7 @@ public class GameManage : Singleton<GameManage>
         set
         {
             currency = value;
-            currencyText.text = value.ToString() + "<color=lime>$</color>";
+            currencyText.text = "<color=lime>$</color> " + value.ToString();
         }
     }
     private int health;
@@ -57,7 +57,7 @@ public class GameManage : Singleton<GameManage>
                 health = 0;
                 GameOver();
             }
-            healthText.text = health.ToString() + "<color=red>♥</color>";
+            healthText.text = health.ToString();
 
         }
     }
@@ -181,7 +181,7 @@ public class GameManage : Singleton<GameManage>
     {
         if (selectedTower != null)
         {
-            Currency += selectedTower.Price / 2;
+            Currency += selectedTower.Price;
             Tile selectedTile = selectedTower.GetComponentInParent<Tile>();
             selectedTile.IsEmpty = true; // clear the tile
             selectedTile.NumberOftowers--; // decrement the number of towers "using" the tile (adjacentS)
